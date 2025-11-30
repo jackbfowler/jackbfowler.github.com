@@ -31,21 +31,30 @@ class ErrorBoundary extends React.Component {
   }
 }
 
+import TitleWorker from './workers/titleTimer.js?worker';
+
 function App() {
   React.useEffect(() => {
-    let timeoutId;
     const originalTitle = "Jack Fowler";
     const waveTitle = "👋 Jack Fowler";
 
+    // Initialize Worker
+    const worker = new TitleWorker();
+
+    // Listen for messages from the worker
+    worker.onmessage = (e) => {
+      if (e.data === 'tick') {
+        document.title = waveTitle;
+      }
+    };
+
     const handleVisibilityChange = () => {
       if (document.hidden) {
-        // Tab is hidden, start timer
-        timeoutId = setTimeout(() => {
-          document.title = waveTitle;
-        }, 2000); // 2 seconds delay
+        // Tab is hidden, tell worker to start timer
+        worker.postMessage('start');
       } else {
-        // Tab is visible, clear timer and reset title
-        clearTimeout(timeoutId);
+        // Tab is visible, tell worker to clear timer and reset title
+        worker.postMessage('clear');
         document.title = originalTitle;
       }
     };
@@ -54,7 +63,7 @@ function App() {
 
     return () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
-      clearTimeout(timeoutId);
+      worker.terminate(); // Clean up worker
     };
   }, []);
 
