@@ -38,15 +38,7 @@ const ProjectDetail: React.FC = () => {
                             </span>
                         ))}
                     </div>
-                    <div style={{
-                        width: '100%',
-                        height: '400px',
-                        backgroundImage: `url(${project.imageUrl})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        borderRadius: '12px',
-                        marginBottom: '2rem'
-                    }}></div>
+
                 </header>
 
                 <div style={{ maxWidth: '800px', margin: '0 auto', fontSize: '1.1rem', color: 'var(--stone-300)' }}>

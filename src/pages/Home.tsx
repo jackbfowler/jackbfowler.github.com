@@ -35,7 +35,7 @@ const Home = () => {
                     <h2 style={styles.subtitle}>Mechanical Engineering Student @ N.C. State</h2>
                     <p style={styles.summary}>
                         Proven student experience in design, prototyping, manufacturing, and
-                        analysis for <FlipText words={["metal additive.", "polymer additive.", "5-axis machining.", "3-axis machining.", "hybrid machining.", "sheet metal."]} color="var(--stone-50)" />
+                        analysis for <FlipText words={["automotive.", "metal additive.", "polymer additive.", "robotics.", "5-axis machining.", "3-axis machining.", "hybrid machining.", "mill-turn machining.", "sheet metal.", "consumer products.", "machine tools."]} color="var(--stone-50)" />
                     </p>
                     {/* View My Work button removed */}
                 </div>
