@@ -1,5 +1,10 @@
 import React, { useMemo, useState } from 'react';
-import { experienceData } from '../data/experience';
+import { experienceData, Experience } from '../data/experience';
+
+interface ProcessedExperience extends Experience {
+    bottomUnits: number;
+    heightUnits: number;
+}
 
 const Timeline = () => {
     const TOTAL_SEMESTERS = 7; // User-defined total semesters
@@ -9,13 +14,14 @@ const Timeline = () => {
     const LOGO_OFFSET_X = -100;
     const COLUMN_OFFSET_X = 20; // Extra offset for columns 1 & 2
 
-    const [selectedItem, setSelectedItem] = useState(null);
+    const [selectedItem, setSelectedItem] = useState<ProcessedExperience | null>(null);
 
     // 1. Process Data & Calculate Layout
-    const { processedData, totalSemesters, maxTrack } = useMemo(() => {
+    const { processedData, totalSemesters, maxTrack, minBottomUnits } = useMemo(() => {
         // Find max semester and max track
         let maxSem = 0;
         let maxTrk = 0;
+        let minBottom = 0;
 
         experienceData.forEach(item => {
             if (item.semesterEnd > maxSem) maxSem = item.semesterEnd;
@@ -25,13 +31,15 @@ const Timeline = () => {
         // Calculate Layout based on Semesters
 
 
-        const finalData = experienceData.map(item => {
+        const finalData: ProcessedExperience[] = experienceData.map(item => {
             // Height in units
             const duration = item.semesterEnd - item.semesterStart;
 
             // Bottom Position (Semester 1 is at 0)
             // item.semesterStart = 1 -> Bottom = 0
             const bottomUnits = item.semesterStart - 1;
+
+            if (bottomUnits < minBottom) minBottom = bottomUnits;
 
             return {
                 ...item,
@@ -43,17 +51,23 @@ const Timeline = () => {
         return {
             processedData: finalData,
             totalSemesters: TOTAL_SEMESTERS, // Use fixed count
-            maxTrack: maxTrk
+            maxTrack: maxTrk,
+            minBottomUnits: minBottom
         };
     }, []);
 
     const TOTAL_TRACK_WIDTH = (maxTrack + 1) * TRACK_WIDTH;
+    const bottomOverflow = Math.abs(minBottomUnits * SEMESTER_HEIGHT);
 
     return (
-        <div className="timeline-container" style={styles.container}>
-            {/* Header Removed */}
+        <div className="timeline-container" style={{
+            ...styles.container,
+            marginBottom: `${bottomOverflow + 40}px` // Dynamic margin for negative bottom items
+        }}>
+            {/* Header */}
+            <h2 style={{ ...styles.header, fontSize: '1.5rem' }}>Timeline</h2>
 
-            <div style={{ ...styles.timelineWrapper, height: `${totalSemesters * SEMESTER_HEIGHT + 225}px` }}>
+            <div style={{ ...styles.timelineWrapper, height: `${totalSemesters * SEMESTER_HEIGHT + 160}px` }}>
 
                 {/* Present Day Split Line (Mask) */}
                 <div
@@ -61,8 +75,8 @@ const Timeline = () => {
                         position: 'absolute',
                         bottom: `${totalSemesters * SEMESTER_HEIGHT}px`,
                         left: '0', // Start at the first track
-                        width: `${maxTrack * TRACK_WIDTH + 8}px`, // Exact width of the tracks
-                        height: '10px', // Thickness of the split
+                        width: `${maxTrack * TRACK_WIDTH - 10}px`, // Exact width of the tracks
+                        height: '12.5px', // Thickness of the split
                         backgroundColor: 'var(--bg-primary)', // Match background to create "cut" effect
                         zIndex: 20, // Above the bars
                     }}
@@ -72,7 +86,7 @@ const Timeline = () => {
                 {/* Present Label */}
                 <div style={{
                     position: 'absolute',
-                    bottom: `${totalSemesters * SEMESTER_HEIGHT + 10}px`,
+                    bottom: `${totalSemesters * SEMESTER_HEIGHT - 5}px`,
                     left: `${TOTAL_TRACK_WIDTH - 20}px`, // Right of tracks
                     textAlign: 'left',
                     color: 'var(--stone-400)',
@@ -143,8 +157,8 @@ const Timeline = () => {
                     // Track 0 extension = Base + (MaxTrack * Step)
                     // Track N extension = Base + ((MaxTrack - N) * Step)
                     if (item.endDate === 'Present') {
-                        const step = 80;
-                        const baseExtension = 10;
+                        const step = 60;
+                        const baseExtension = 5;
                         // Use maxTrack from closure
                         const stagger = (maxTrack - item.track) * step;
                         height += baseExtension + stagger;
@@ -172,8 +186,41 @@ const Timeline = () => {
                                     opacity: selectedItem && !isSelected ? 0.3 : 1,
                                     transition: 'opacity 0.3s',
                                 }}
-                                onClick={() => setSelectedItem(item)}
+                            // onClick={() => setSelectedItem(item)}
                             />
+
+                            {/* Arrow for Present items */}
+                            {item.endDate === 'Present' && (
+                                <div
+                                    style={{
+                                        position: 'absolute',
+                                        left: `${leftPos + 4 - 8}px`, // Center: leftPos + (width/2) - (arrowWidth/2) = leftPos + 4 - 8
+                                        bottom: `${bottomPos + height - 2}px`, // Overlap slightly
+                                        width: '16px',
+                                        height: '12px',
+                                        zIndex: 11,
+                                        pointerEvents: 'none', // Let clicks pass through to the bar/label
+                                        opacity: selectedItem && !isSelected ? 0.3 : 1,
+                                        transition: 'opacity 0.3s',
+                                    }}
+                                >
+                                    <svg
+                                        width="16"
+                                        height="12"
+                                        viewBox="0 0 16 12"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path
+                                            d="M8 0L16 12H0L8 0Z"
+                                            fill={item.color}
+                                            stroke={item.color}
+                                            strokeWidth="2"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                </div>
+                            )}
 
                             {/* Label Group - Aligned to TOP of bar */}
                             <div
@@ -194,7 +241,7 @@ const Timeline = () => {
                                     // If we want the top of the logo to be level with it, we just need to ensure the image is the first thing.
                                     // And we might need to offset it slightly if the line has a cap or something, but here it's just a div.
                                 }}
-                                onClick={() => setSelectedItem(item)}
+                            // onClick={() => setSelectedItem(item)}
                             >
                                 {/* Logo Image Header */}
                                 <div style={{
@@ -241,7 +288,17 @@ const Timeline = () => {
                         <button style={styles.closeBtn} onClick={() => setSelectedItem(null)}>×</button>
 
                         <div style={styles.modalHeader}>
-                            <span style={{ fontSize: '3rem', marginRight: '1rem' }}>{selectedItem.logo}</span>
+                            <span style={{ fontSize: '3rem', marginRight: '1rem' }}>
+                                {/* Render logo in modal instead of text if available, or just use text/emoji if that was the intent. 
+                                    The original code had {selectedItem.logo} here, but selectedItem.logo is an image path string.
+                                    Rendering it as text inside a span is probably not what was intended if it's an image path.
+                                    However, looking at the original code, it seems it was rendering the image path as text? 
+                                    Or maybe it was expecting an emoji?
+                                    The data has image paths. 
+                                    I'll fix this to render the image.
+                                */}
+                                <img src={selectedItem.logo} alt="logo" style={{ height: '3rem', width: 'auto' }} />
+                            </span>
                             <div>
                                 <h3 style={{ ...styles.modalTitle, color: selectedItem.color }}>{selectedItem.company}</h3>
                                 <h4 style={styles.modalRole}>{selectedItem.role}</h4>
@@ -260,11 +317,11 @@ const Timeline = () => {
     );
 };
 
-const styles = {
+const styles: Record<string, React.CSSProperties> = {
     container: {
         position: 'relative',
         width: '100%',
-        maxWidth: '480px', // Restrict to left
+        maxWidth: '480px', // Restrict width
     },
     header: {
         marginBottom: '3rem',

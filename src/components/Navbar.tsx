@@ -54,7 +54,7 @@ const Navbar = () => {
     );
 };
 
-const styles = {
+const styles: Record<string, React.CSSProperties> = {
     nav: {
         backgroundColor: 'var(--stone-950)', // Solid dark background
         position: 'relative', // Push content down

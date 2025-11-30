@@ -1,11 +1,11 @@
-let timeoutId;
+let timeoutId: number | undefined;
 
-self.onmessage = (e) => {
+self.onmessage = (e: MessageEvent) => {
     if (e.data === 'start') {
         // Clear any existing timer just in case
         if (timeoutId) clearTimeout(timeoutId);
 
-        timeoutId = setTimeout(() => {
+        timeoutId = self.setTimeout(() => {
             self.postMessage('tick');
         }, 2000);
     } else if (e.data === 'clear') {

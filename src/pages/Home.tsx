@@ -48,7 +48,7 @@ const Home = () => {
     );
 };
 
-const styles = {
+const styles: Record<string, React.CSSProperties> = {
     photoContainer: {
         width: '150px',
         height: '150px',

@@ -6,7 +6,22 @@ import FORMLABS from '../assets/Logos/FORMLABS.png';
 import NCSSM from '../assets/Logos/NCSSM.png';
 import VALENCE from '../assets/Logos/VALENCE.png';
 
-export const experienceData = [
+export interface Experience {
+    id: number;
+    company: string;
+    role: string;
+    startDate: string;
+    endDate: string;
+    semesterStart: number;
+    semesterEnd: number;
+    description: string;
+    logo: string;
+    color: string;
+    logoBg?: string;
+    track: number;
+}
+
+export const experienceData: Experience[] = [
     {
         id: 0,
         company: "NCSSM",
@@ -71,7 +86,7 @@ export const experienceData = [
         logo: DMGMORI,
         color: "#221F20",
         logoBg: "#ffffff",
-        track: 3 // Reverted to 3
+        track: 3
     },
     {
         id: 5,
@@ -84,7 +99,7 @@ export const experienceData = [
         description: "Assisted in the development of soft robotics actuators. Published findings in undergraduate research symposium.",
         logo: FORMLABS,
         color: "#2A60C1",
-        track: 3 // Reverted to 3
+        track: 3
     },
     {
         id: 6,
