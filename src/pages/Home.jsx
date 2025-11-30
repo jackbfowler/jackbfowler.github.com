@@ -33,7 +33,7 @@ const Home = () => {
                     <h1 style={styles.title}>Jack Fowler</h1>
                     <h2 style={styles.subtitle}>Mechanical Engineering Student @ N.C. State</h2>
                     <p style={styles.summary}>
-                        Passionate about designing and building innovative mechanical systems.
+                        Bincent Bincent Bincent
                     </p>
                     {/* View My Work button removed */}
                 </div>
