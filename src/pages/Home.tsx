@@ -1,6 +1,7 @@
 import PFP from '../assets/PFP.png';
 import Timeline from '../components/Timeline';
 import HomeBackground from '../assets/HomeBackground.png';
+import FlipText from '../components/FlipText';
 
 const Home = () => {
     const photoConfig = {
@@ -33,7 +34,8 @@ const Home = () => {
                     <h1 style={styles.title}>Jack Fowler</h1>
                     <h2 style={styles.subtitle}>Mechanical Engineering Student @ N.C. State</h2>
                     <p style={styles.summary}>
-                        Bincent Bincent Bincent
+                        Proven student experience in design, prototyping, manufacturing, and
+                        analysis for <FlipText words={["metal additive.", "polymer additive.", "5-axis machining.", "3-axis machining.", "hybrid machining.", "sheet metal."]} color="var(--stone-50)" />
                     </p>
                     {/* View My Work button removed */}
                 </div>
@@ -71,14 +73,15 @@ const styles: Record<string, React.CSSProperties> = {
     },
     subtitle: {
         fontSize: '1.5rem',
-        marginBottom: '1.5rem',
+        marginBottom: '1rem',
         color: 'var(--stone-200)', // Light text
         fontWeight: '500',
     },
     summary: {
         maxWidth: '600px',
         fontSize: '1.1rem',
-        color: 'var(--stone-300)', // Light text
+        color: 'var(--stone-50)', // Light text
+        textShadow: '0 2px 4px rgba(0,0,0,0.8)', // Strong drop shadow
     }
 };
 

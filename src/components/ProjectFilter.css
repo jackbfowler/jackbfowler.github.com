@@ -1,0 +1,30 @@
+.project-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+}
+
+.filter-btn {
+    background-color: transparent;
+    border: 1px solid var(--stone-700);
+    color: var(--stone-400);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+}
+
+.filter-btn:hover {
+    border-color: var(--stone-500);
+    color: var(--stone-200);
+}
+
+.filter-btn.active {
+    background-color: var(--stone-100);
+    color: var(--stone-950);
+    border-color: var(--stone-100);
+    font-weight: 600;
+}

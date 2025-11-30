@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import './Navbar.css';
 
 const Navbar = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const location = useLocation();
 
     useEffect(() => {
         const handleResize = () => {
@@ -22,105 +24,42 @@ const Navbar = () => {
     };
 
     return (
-        <nav style={styles.nav}>
-            <div className="container" style={styles.container}>
-                <Link to="/" style={styles.logo}>Jack Fowler</Link>
+        <nav className="navbar">
+            <div className="container navbar-container">
+                <Link to="/" className="navbar-logo">Jack Fowler</Link>
 
                 {isMobile ? (
                     <>
-                        <button style={styles.hamburgerBtn} onClick={toggleMenu}>
-                            <div style={styles.hamburgerLine} />
-                            <div style={styles.hamburgerLine} />
-                            <div style={styles.hamburgerLine} />
+                        <button className="hamburger-btn" onClick={toggleMenu}>
+                            <div className="hamburger-line" />
+                            <div className="hamburger-line" />
+                            <div className="hamburger-line" />
                         </button>
 
                         {isMenuOpen && (
-                            <div style={styles.mobileMenu}>
-                                <Link to="/" style={styles.mobileLink} onClick={toggleMenu}>Home</Link>
-                                <Link to="/projects" style={styles.mobileLink} onClick={toggleMenu}>Projects</Link>
-                                <Link to="/resume" style={styles.mobileLink} onClick={toggleMenu}>Resume</Link>
+                            <div className="mobile-menu">
+                                <Link to="/" className="mobile-link" onClick={toggleMenu}>Home</Link>
+                                <Link to="/projects" className="mobile-link" onClick={toggleMenu}>Projects</Link>
+                                <Link to="/resume" className="mobile-link" onClick={toggleMenu}>Resume</Link>
                             </div>
                         )}
                     </>
                 ) : (
-                    <div style={styles.links}>
-                        <Link to="/" style={styles.link}>Home</Link>
-                        <Link to="/projects" style={styles.link}>Projects</Link>
-                        <Link to="/resume" style={styles.link}>Resume</Link>
-                    </div>
+                    <ul className="navbar-links">
+                        <li className={`navbar-item ${location.pathname === '/' ? 'active' : ''}`}>
+                            <Link to="/" className="navbar-link">Home</Link>
+                        </li>
+                        <li className={`navbar-item ${location.pathname.startsWith('/projects') ? 'active' : ''}`}>
+                            <Link to="/projects" className="navbar-link">Projects</Link>
+                        </li>
+                        <li className={`navbar-item ${location.pathname === '/resume' ? 'active' : ''}`}>
+                            <Link to="/resume" className="navbar-link">Resume</Link>
+                        </li>
+                    </ul>
                 )}
             </div>
         </nav>
     );
-};
-
-const styles: Record<string, React.CSSProperties> = {
-    nav: {
-        backgroundColor: 'var(--stone-950)', // Solid dark background
-        position: 'relative', // Push content down
-        width: '100%',
-        zIndex: 1000,
-        padding: '1rem 0',
-        borderBottom: '1px solid var(--stone-800)',
-    },
-    container: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        position: 'relative', // For absolute mobile menu
-    },
-    logo: {
-        fontSize: '1.5rem',
-        fontWeight: 'bold',
-        color: 'var(--stone-50)', // Light text
-    },
-    links: {
-        display: 'flex',
-        gap: '2rem',
-    },
-    link: {
-        fontWeight: '500',
-        fontSize: '1rem',
-        color: 'var(--stone-300)', // Light text
-    },
-    hamburgerBtn: {
-        background: 'none',
-        border: 'none',
-        cursor: 'pointer',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '6px',
-        padding: '0.5rem',
-    },
-    hamburgerLine: {
-        width: '25px',
-        height: '2px',
-        backgroundColor: 'var(--stone-50)',
-        borderRadius: '2px',
-    },
-    mobileMenu: {
-        position: 'absolute',
-        top: '100%',
-        right: 0,
-        backgroundColor: 'var(--stone-900)',
-        border: '1px solid var(--stone-800)',
-        borderRadius: '8px',
-        padding: '1rem',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '1rem',
-        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-        zIndex: 1001,
-        minWidth: '150px',
-    },
-    mobileLink: {
-        fontWeight: '500',
-        fontSize: '1rem',
-        color: 'var(--stone-300)',
-        textDecoration: 'none',
-        display: 'block',
-        padding: '0.5rem',
-    }
 };
 
 export default Navbar;

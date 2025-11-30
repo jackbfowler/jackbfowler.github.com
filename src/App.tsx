@@ -2,6 +2,8 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
+import Projects from './pages/Projects';
+import ProjectDetail from './pages/ProjectDetail';
 
 interface ErrorBoundaryProps {
   children: React.ReactNode;
@@ -85,8 +87,8 @@ function App() {
         <main style={{ flex: 1 }}>
           <Routes>
             <Route path="/" element={<Home />} />
-            {/* Placeholder routes */}
-            <Route path="/projects" element={<div className="container section" style={{ paddingTop: '100px' }}><h2>Projects Coming Soon</h2></div>} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/:slug" element={<ProjectDetail />} />
             <Route path="/resume" element={<div className="container section" style={{ paddingTop: '100px' }}><h2>Resume Coming Soon</h2></div>} />
           </Routes>
         </main>

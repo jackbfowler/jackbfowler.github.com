@@ -10,6 +10,8 @@ const Timeline = () => {
     const TOTAL_SEMESTERS = 7; // User-defined total semesters
     const SEMESTER_HEIGHT = 70; // px per semester
     const TRACK_WIDTH = 20; // px
+    const MARKER_WIDTH = 80; // Width for left-side markers
+    const TRACK_START_X = MARKER_WIDTH + 0; // Start tracks after markers
     const LABEL_OFFSET = 40;
     const LOGO_OFFSET_X = -100;
     const COLUMN_OFFSET_X = 20; // Extra offset for columns 1 & 2
@@ -59,6 +61,29 @@ const Timeline = () => {
     const TOTAL_TRACK_WIDTH = (maxTrack + 1) * TRACK_WIDTH;
     const bottomOverflow = Math.abs(minBottomUnits * SEMESTER_HEIGHT);
 
+    // Helper to render multi-line markers
+    const renderMarker = (text: string, bottom: string) => (
+        <div style={{
+            position: 'absolute',
+            bottom: bottom,
+            left: 0,
+            width: `${MARKER_WIDTH}px`,
+            textAlign: 'right',
+            color: 'var(--stone-400)',
+            fontSize: '0.9rem',
+            fontWeight: '500',
+            lineHeight: 1.2,
+            paddingRight: '10px',
+        }}>
+            {text.split(' ').map((word, i) => (
+                <React.Fragment key={i}>
+                    {word}
+                    {i < text.split(' ').length - 1 && <br />}
+                </React.Fragment>
+            ))}
+        </div>
+    );
+
     return (
         <div className="timeline-container" style={{
             ...styles.container,
@@ -74,7 +99,7 @@ const Timeline = () => {
                     style={{
                         position: 'absolute',
                         bottom: `${totalSemesters * SEMESTER_HEIGHT}px`,
-                        left: '0', // Start at the first track
+                        left: `${TRACK_START_X}px`, // Start at the first track
                         width: `${maxTrack * TRACK_WIDTH - 10}px`, // Exact width of the tracks
                         height: '12.5px', // Thickness of the split
                         backgroundColor: 'var(--bg-primary)', // Match background to create "cut" effect
@@ -82,70 +107,26 @@ const Timeline = () => {
                     }}
                 />
 
-                {/* Side Labels - Moved to Right */}
-                {/* Present Label */}
-                <div style={{
-                    position: 'absolute',
-                    bottom: `${totalSemesters * SEMESTER_HEIGHT - 5}px`,
-                    left: `${TOTAL_TRACK_WIDTH - 20}px`, // Right of tracks
-                    textAlign: 'left',
-                    color: 'var(--stone-400)',
-                    fontSize: '0.9rem',
-                    fontWeight: '500',
-                    whiteSpace: 'nowrap',
-                }}>
-                    Present
-                </div>
-                {/* Summer 2025 (Formlabs - Start Sem 6) */}
-                <div style={{
-                    position: 'absolute',
-                    bottom: `${5 * SEMESTER_HEIGHT + 20}px`, // Below Sem 6 (Formlabs)
-                    left: `${TOTAL_TRACK_WIDTH + 0}px`, // Right of tracks
-                    textAlign: 'left',
-                    color: 'var(--stone-400)',
-                    fontSize: '0.9rem',
-                    fontWeight: '500',
-                    whiteSpace: 'nowrap',
-                }}>
-                    Summer 2025
-                </div>
-                {/* Summer 2024 (DMG MORI - Start Sem 3) */}
-                <div style={{
-                    position: 'absolute',
-                    bottom: `${2 * SEMESTER_HEIGHT + 20}px`, // Below Sem 3 (DMG MORI)
-                    left: `${TOTAL_TRACK_WIDTH + 0}px`, // Right of tracks
-                    textAlign: 'left',
-                    color: 'var(--stone-400)',
-                    fontSize: '0.9rem',
-                    fontWeight: '500',
-                    whiteSpace: 'nowrap',
-                }}>
-                    Summer 2024
-                </div>
-                {/* high school*/}
-                <div style={{
-                    position: 'absolute',
-                    bottom: `${-1.2 * SEMESTER_HEIGHT - 40}px`, // Below Sem 0 
-                    left: `${TOTAL_TRACK_WIDTH - 40}px`, // Right of tracks
-                    textAlign: 'left',
-                    color: 'var(--stone-400)',
-                    fontSize: '0.9rem',
-                    fontWeight: '500',
-                    whiteSpace: 'nowrap',
-                }}>
-                    High School
-                </div>
+                {/* Side Labels - Moved to Left */}
+                {renderMarker("Present", `${totalSemesters * SEMESTER_HEIGHT + 10}px`)}
+                {renderMarker("Summer 2025", `${5 * SEMESTER_HEIGHT - 2.5}px`)}
+                {renderMarker("Summer 2024", `${2 * SEMESTER_HEIGHT - 2.5}px`)}
+                {renderMarker("High School", `${-1.2 * SEMESTER_HEIGHT - 75}px`)}
 
                 {/* Render Tracks & Labels */}
                 {processedData.map((item) => {
                     const isSelected = selectedItem?.id === item.id;
 
                     // Layout Logic
-                    const leftPos = item.track * TRACK_WIDTH;
+                    const leftPos = TRACK_START_X + (item.track * TRACK_WIDTH);
 
                     // Dynamic Label Position:
-                    // Base Offset + Global Logo Offset + (Track Index * Column Spacing)
-                    const labelLeft = TOTAL_TRACK_WIDTH + LABEL_OFFSET + LOGO_OFFSET_X + (item.track * COLUMN_OFFSET_X);
+                    // Track Start + Total Track Width + Label Offset + Logo Offset + (Track Index * Column Spacing)
+                    // Note: We might need to adjust this logic since we shifted everything right.
+                    // The original logic was: TOTAL_TRACK_WIDTH + LABEL_OFFSET + LOGO_OFFSET_X + (item.track * COLUMN_OFFSET_X)
+                    // Now TOTAL_TRACK_WIDTH is just the width of tracks.
+                    // We want labels to be to the right of ALL tracks.
+                    const labelLeft = TRACK_START_X + TOTAL_TRACK_WIDTH + LABEL_OFFSET + LOGO_OFFSET_X + (item.track * COLUMN_OFFSET_X);
 
                     // Vertical Position
                     const bottomPos = item.bottomUnits * SEMESTER_HEIGHT;
@@ -158,7 +139,7 @@ const Timeline = () => {
                     // Track N extension = Base + ((MaxTrack - N) * Step)
                     if (item.endDate === 'Present') {
                         const step = 60;
-                        const baseExtension = 5;
+                        const baseExtension = -10;
                         // Use maxTrack from closure
                         const stagger = (maxTrack - item.track) * step;
                         height += baseExtension + stagger;
@@ -188,39 +169,6 @@ const Timeline = () => {
                                 }}
                             // onClick={() => setSelectedItem(item)}
                             />
-
-                            {/* Arrow for Present items */}
-                            {item.endDate === 'Present' && (
-                                <div
-                                    style={{
-                                        position: 'absolute',
-                                        left: `${leftPos + 4 - 8}px`, // Center: leftPos + (width/2) - (arrowWidth/2) = leftPos + 4 - 8
-                                        bottom: `${bottomPos + height - 2}px`, // Overlap slightly
-                                        width: '16px',
-                                        height: '12px',
-                                        zIndex: 11,
-                                        pointerEvents: 'none', // Let clicks pass through to the bar/label
-                                        opacity: selectedItem && !isSelected ? 0.3 : 1,
-                                        transition: 'opacity 0.3s',
-                                    }}
-                                >
-                                    <svg
-                                        width="16"
-                                        height="12"
-                                        viewBox="0 0 16 12"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M8 0L16 12H0L8 0Z"
-                                            fill={item.color}
-                                            stroke={item.color}
-                                            strokeWidth="2"
-                                            strokeLinejoin="round"
-                                        />
-                                    </svg>
-                                </div>
-                            )}
 
                             {/* Label Group - Aligned to TOP of bar */}
                             <div
@@ -322,6 +270,7 @@ const styles: Record<string, React.CSSProperties> = {
         position: 'relative',
         width: '100%',
         maxWidth: '480px', // Restrict width
+        marginLeft: '-20px',
     },
     header: {
         marginBottom: '3rem',
