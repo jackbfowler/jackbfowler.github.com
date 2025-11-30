@@ -1,5 +1,6 @@
 import PFP from '../assets/PFP.png';
 import Timeline from '../components/Timeline';
+import HomeBackground from '../assets/HomeBackground.png';
 
 const Home = () => {
     const photoConfig = {
@@ -9,9 +10,16 @@ const Home = () => {
     };
 
     return (
-        <div className="home-page" style={{ paddingTop: '80px' }}>
-            <section className="hero section">
-                <div className="container" style={{ textAlign: 'left' }}>
+        <div className="home-page">
+            <section className="hero section" style={{
+                backgroundImage: `url(${HomeBackground})`,
+                backgroundSize: 'cover', // Ensures text is always contained
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'top center',
+                paddingTop: '4rem', // Reduced distance from navbar
+                paddingBottom: '4rem', // Ensure image extends below text
+            }}>
+                <div className="container" style={{ textAlign: 'left', width: '100%' }}>
                     <div className="profile-photo-container" style={styles.photoContainer}>
                         <img
                             src={PFP}
@@ -26,12 +34,8 @@ const Home = () => {
                     <h2 style={styles.subtitle}>Mechanical Engineering Student @ N.C. State</h2>
                     <p style={styles.summary}>
                         Passionate about designing and building innovative mechanical systems.
-                        Experienced in CAD, prototyping, and analysis.
-                        Welcome to my portfolio where I showcase my projects and journey.
                     </p>
-                    <div style={{ marginTop: '2rem' }}>
-                        <a href="/projects" className="btn">View My Work</a>
-                    </div>
+                    {/* View My Work button removed */}
                 </div>
             </section>
 
@@ -50,8 +54,10 @@ const styles = {
         height: '150px',
         borderRadius: '50%',
         overflow: 'hidden',
+        border: '4px solid var(--stone-50)', // Keep white border for contrast
+        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
         marginBottom: '2rem',
-        // Removed border and shadow
+        position: 'relative',
     },
     photo: {
         width: '100%',
@@ -61,18 +67,18 @@ const styles = {
     title: {
         fontSize: '3.5rem',
         marginBottom: '0.5rem',
-        color: 'var(--text-primary)', // Was --stone-50
+        color: 'var(--stone-50)', // Light text
     },
     subtitle: {
         fontSize: '1.5rem',
-        color: 'var(--text-secondary)', // Was --stone-400
         marginBottom: '1.5rem',
-        fontWeight: '400',
+        color: 'var(--stone-200)', // Light text
+        fontWeight: '500',
     },
     summary: {
         maxWidth: '600px',
         fontSize: '1.1rem',
-        color: 'var(--text-secondary)', // Uses theme variable
+        color: 'var(--stone-300)', // Light text
     }
 };
 

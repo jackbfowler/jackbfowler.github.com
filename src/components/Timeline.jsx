@@ -53,7 +53,7 @@ const Timeline = () => {
         <div className="timeline-container" style={styles.container}>
             {/* Header Removed */}
 
-            <div style={{ ...styles.timelineWrapper, height: `${totalSemesters * SEMESTER_HEIGHT + 50}px` }}>
+            <div style={{ ...styles.timelineWrapper, height: `${totalSemesters * SEMESTER_HEIGHT + 225}px` }}>
 
                 {/* Present Day Split Line (Mask) */}
                 <div
@@ -61,13 +61,66 @@ const Timeline = () => {
                         position: 'absolute',
                         bottom: `${totalSemesters * SEMESTER_HEIGHT}px`,
                         left: '0', // Start at the first track
-                        width: `${maxTrack * TRACK_WIDTH + 8}px`, // Exact width of the tracks (last track starts at maxTrack*20 and is 8px wide)
+                        width: `${maxTrack * TRACK_WIDTH + 8}px`, // Exact width of the tracks
                         height: '10px', // Thickness of the split
                         backgroundColor: 'var(--bg-primary)', // Match background to create "cut" effect
                         zIndex: 20, // Above the bars
                     }}
                 />
-                {/* Label Removed */}
+
+                {/* Side Labels - Moved to Right */}
+                {/* Present Label */}
+                <div style={{
+                    position: 'absolute',
+                    bottom: `${totalSemesters * SEMESTER_HEIGHT + 10}px`,
+                    left: `${TOTAL_TRACK_WIDTH - 20}px`, // Right of tracks
+                    textAlign: 'left',
+                    color: 'var(--stone-400)',
+                    fontSize: '0.9rem',
+                    fontWeight: '500',
+                    whiteSpace: 'nowrap',
+                }}>
+                    Present
+                </div>
+                {/* Summer 2025 (Formlabs - Start Sem 6) */}
+                <div style={{
+                    position: 'absolute',
+                    bottom: `${5 * SEMESTER_HEIGHT + 20}px`, // Below Sem 6 (Formlabs)
+                    left: `${TOTAL_TRACK_WIDTH + 0}px`, // Right of tracks
+                    textAlign: 'left',
+                    color: 'var(--stone-400)',
+                    fontSize: '0.9rem',
+                    fontWeight: '500',
+                    whiteSpace: 'nowrap',
+                }}>
+                    Summer 2025
+                </div>
+                {/* Summer 2024 (DMG MORI - Start Sem 3) */}
+                <div style={{
+                    position: 'absolute',
+                    bottom: `${2 * SEMESTER_HEIGHT + 20}px`, // Below Sem 3 (DMG MORI)
+                    left: `${TOTAL_TRACK_WIDTH + 0}px`, // Right of tracks
+                    textAlign: 'left',
+                    color: 'var(--stone-400)',
+                    fontSize: '0.9rem',
+                    fontWeight: '500',
+                    whiteSpace: 'nowrap',
+                }}>
+                    Summer 2024
+                </div>
+                {/* high school*/}
+                <div style={{
+                    position: 'absolute',
+                    bottom: `${-1.2 * SEMESTER_HEIGHT - 40}px`, // Below Sem 0 
+                    left: `${TOTAL_TRACK_WIDTH - 40}px`, // Right of tracks
+                    textAlign: 'left',
+                    color: 'var(--stone-400)',
+                    fontSize: '0.9rem',
+                    fontWeight: '500',
+                    whiteSpace: 'nowrap',
+                }}>
+                    High School
+                </div>
 
                 {/* Render Tracks & Labels */}
                 {processedData.map((item) => {
@@ -91,7 +144,7 @@ const Timeline = () => {
                     // Track N extension = Base + ((MaxTrack - N) * Step)
                     if (item.endDate === 'Present') {
                         const step = 80;
-                        const baseExtension = 60;
+                        const baseExtension = 10;
                         // Use maxTrack from closure
                         const stagger = (maxTrack - item.track) * step;
                         height += baseExtension + stagger;
@@ -99,13 +152,8 @@ const Timeline = () => {
 
                     // Border Radius Logic
                     // "Pill shaped at top and bottom"
-                    // "Cutoff at present day can still be sharp"
-                    // Since bars grow UPWARDS:
-                    // Bottom = Start Date
-                    // Top = End Date
-                    // Present items (ongoing) -> Sharp Top, Rounded Bottom
-                    // Past items (finished) -> Rounded Top, Rounded Bottom
-                    const borderRadius = item.endDate === 'Present' ? '0 0 4px 4px' : '4px';
+                    // Always rounded now, per user request.
+                    const borderRadius = '4px';
 
                     return (
                         <React.Fragment key={item.id}>
@@ -214,10 +262,9 @@ const Timeline = () => {
 
 const styles = {
     container: {
-        marginTop: '10rem',
         position: 'relative',
         width: '100%',
-        maxWidth: '480px', // Restrict to left thirdish
+        maxWidth: '480px', // Restrict to left
     },
     header: {
         marginBottom: '3rem',
