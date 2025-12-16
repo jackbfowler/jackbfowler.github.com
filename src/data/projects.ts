@@ -19,7 +19,7 @@ export interface Project {
 export const projects: Project[] = [
     {
         id: '1',
-        title: 'Suspension Analysis',
+        title: 'Suspension Analysis Tool',
         description: 'A geometry analysis tool for kinematic design.',
         tags: ['Baja SAE', 'MATLAB', 'Solidworks'],
         imageUrl: SusAnaly,
@@ -28,14 +28,20 @@ export const projects: Project[] = [
             React.createElement('h2', null, 'Overview'),
             React.createElement('p', null,
                 'A suspension and steering geometry analysis tool built for our Baja SAE car. Inspired by usage of software like Lotus Shark and Adams Car, but made to fill a gap in our use case. ' +
-                'It has allowed much more thorough and intuitive analysis of geometry changes to key target metrics.'
+                'It allowed me to improve knowledge of fundamental analysis, and have much more thorough and intuitive analysis of geometry changes to key target metrics.'
+            ),
+            React.createElement('br'),
+            React.createElement('ul', { style: { listStyleType: 'disc', paddingLeft: '20px', marginBottom: '1rem' } },
+                React.createElement('li', null, 'Assumptions: Quasistatic, zero-deformation tire and links'),
+                React.createElement('li', null, 'Solving: Simple vector algebra approach, instantly solves with low compute'),
+                React.createElement('li', null, 'Produces: Key corner kinematic metrics for double a-arm, LCA/UCA shock mounted suspension'),
             ),
             React.createElement('br'),
             React.createElement('h3', null, 'How It Works'),
             React.createElement('br'),
             React.createElement('p', null,
                 'A kinematic model of our car is built in Solidworks, driven by an inverse model from ride height, wheel base, and other top level variables. ' +
-                'This allows for analysis, but it is slow and clunky, requiring you to jump through Solidworks hoops.'
+                'This allows for good fundamental design, but it is slow and clunky, requiring you to jump through many Solidworks hoops.'
             ),
             React.createElement('img', {
                 src: SusAnaly1,
@@ -54,7 +60,8 @@ export const projects: Project[] = [
             React.createElement('br'),
             React.createElement('p', null,
                 'I then developed a MATLAB script that parses the exported geometry and solves the forward kinematics from shock and steering travel. ' +
-                'It uses closed-form vector algebra to explicitly solve the motion using trig and circle sphere intersections, which is great with MATLAB matrix operations. '
+                'It uses closed-form vector algebra to explicitly solve the motion using trig and circle sphere intersections, which is great with MATLAB matrix operations. ' +
+                'Handles singularities and strange geometry edges cases natively.'
             ),
             React.createElement('img', {
                 src: SusAnaly3,
