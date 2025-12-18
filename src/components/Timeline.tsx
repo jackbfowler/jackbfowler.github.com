@@ -90,7 +90,7 @@ const Timeline = () => {
             marginBottom: `${bottomOverflow + 40}px` // Dynamic margin for negative bottom items
         }}>
             {/* Header */}
-            <h2 style={{ ...styles.header, fontSize: '1.5rem' }}>Timeline</h2>
+            <h2 style={{ ...styles.header, fontSize: '1.5rem' }}>Work History</h2>
 
             <div style={{ ...styles.timelineWrapper, height: `${totalSemesters * SEMESTER_HEIGHT + 160}px` }}>
 
@@ -276,6 +276,8 @@ const styles: Record<string, React.CSSProperties> = {
         marginBottom: '3rem',
         fontSize: '2.5rem',
         color: 'var(--stone-50)',
+        textAlign: 'left',
+        paddingLeft: 'calc(20px + 0.5rem)', // Compensate for container margin + align with others
     },
     timelineWrapper: {
         position: 'relative',

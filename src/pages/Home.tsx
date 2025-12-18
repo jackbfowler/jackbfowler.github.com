@@ -2,6 +2,7 @@ import PFP from '../assets/PFP.png';
 import Timeline from '../components/Timeline';
 import HomeBackground from '../assets/HomeBackground.png';
 import FlipText from '../components/FlipText';
+import MachineCassette from '../components/MachineCassette';
 
 const Home = () => {
     const photoConfig = {
@@ -42,8 +43,13 @@ const Home = () => {
             </section>
 
             <section className="section">
-                <div className="container">
-                    <Timeline />
+                <div className="container home-content-grid">
+                    <div className="timeline-section">
+                        <Timeline />
+                    </div>
+                    <div className="machines-section">
+                        <MachineCassette />
+                    </div>
                 </div>
             </section>
         </div>

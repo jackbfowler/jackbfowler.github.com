@@ -1,0 +1,142 @@
+/* Cassette Layout */
+.machine-cassette-section {
+    position: relative;
+    width: 100%;
+}
+
+.machine-cassette-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--stone-50);
+    text-align: left;
+    padding-left: 0.5rem;
+}
+
+.machine-cassette-wrapper {
+    position: relative;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Scroll Container */
+.machine-cassette-scroll {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding: 1rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.machine-cassette-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+/* Machine Card */
+.machine-card {
+    position: relative;
+    flex: 0 0 auto;
+    width: 80%;
+    /* Wider on mobile */
+    border-radius: 12px;
+    overflow: hidden;
+    scroll-snap-align: center;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    transition: transform 0.3s ease;
+    margin-right: 0;
+    /* Remove right margin since we use gap */
+}
+
+.machine-card:hover {
+    transform: translateY(-4px);
+    box-shadow: none;
+    border-color: transparent;
+}
+
+.machine-card img {
+    width: 100%;
+    height: 300px;
+    /* Fixed height */
+    object-fit: contain;
+    /* meaningful change: prevent cropping */
+    object-position: center;
+    border-radius: 12px;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    transition: transform 0.5s ease;
+}
+
+.machine-card:hover img {
+    transform: scale(1.02);
+}
+
+/* Details Overlay -> Now Details Block */
+.machine-info-overlay {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    padding: 0.5rem 0 0;
+    background: transparent;
+    color: var(--stone-50);
+    transform: none;
+}
+
+.machine-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.1rem;
+    text-align: left;
+}
+
+.machine-desc {
+    font-size: 0.85rem;
+    color: var(--stone-400);
+    text-align: left;
+}
+
+/* Blur/Fade Edges */
+.cassette-edge {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 4rem;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.cassette-edge-left {
+    left: 0;
+    background: linear-gradient(to right, var(--bg-primary), transparent);
+    backdrop-filter: blur(2px);
+    -webkit-mask-image: linear-gradient(to right, black, transparent);
+    mask-image: linear-gradient(to right, black, transparent);
+}
+
+.cassette-edge-right {
+    right: 0;
+    background: linear-gradient(to left, var(--bg-primary), transparent);
+    backdrop-filter: blur(2px);
+    -webkit-mask-image: linear-gradient(to left, black, transparent);
+    mask-image: linear-gradient(to left, black, transparent);
+}
+
+/* Desktop Responsiveness */
+@media (min-width: 768px) {
+    .machine-card {
+        width: 60%;
+        /* Wider on tablet */
+    }
+}
+
+@media (min-width: 1024px) {
+    .machine-card {
+        width: 50%;
+        /* Wider on desktop */
+    }
+}
