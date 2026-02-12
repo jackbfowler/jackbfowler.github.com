@@ -1,0 +1,59 @@
+.zigzag-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    padding: 2rem 0;
+}
+
+.zigzag-row {
+    display: flex;
+    flex-direction: column;
+    /* Default to mobile: Text on top, Image on bottom */
+    align-items: center;
+    gap: 2rem;
+}
+
+.zigzag-text,
+.zigzag-image {
+    flex: 1;
+    width: 100%;
+}
+
+.zigzag-image img,
+.zigzag-image video,
+.zigzag-image .placeholder {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    /* Ensure no filters are applied */
+    filter: none;
+    mix-blend-mode: normal;
+    background-color: transparent;
+}
+
+.zigzag-image .placeholder {
+    aspect-ratio: 16/9;
+    background-color: var(--stone-800);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--stone-500);
+    font-size: 0.9rem;
+}
+
+/* Desktop Styles */
+@media (min-width: 768px) {
+    .zigzag-row {
+        flex-direction: row;
+        /* Default desktop: Text Left, Image Right */
+        align-items: center;
+        /* Center vertically */
+        gap: 4rem;
+    }
+
+    /* Even rows: Image Left, Text Right */
+    .zigzag-row:nth-child(even) {
+        flex-direction: row-reverse;
+    }
+}

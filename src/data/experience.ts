@@ -84,7 +84,7 @@ export const experienceData: Experience[] = [
         semesterEnd: 4,
         description: "Designed and validated battery pack components. Conducted thermal analysis and optimized cooling systems.",
         logo: DMGMORI,
-        color: "#221F20",
+        color: "#ffffff",
         logoBg: "#ffffff",
         track: 3
     },
