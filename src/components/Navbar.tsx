@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import linkedinIcon from '../assets/Logos/LinkedInLogo.png';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -26,7 +27,18 @@ const Navbar = () => {
     return (
         <nav className="navbar">
             <div className="container navbar-container">
-                <Link to="/" className="navbar-logo">Jack Fowler</Link>
+                <div className="navbar-brand">
+                    <Link to="/" className="navbar-logo">Jack Fowler</Link>
+                    <a
+                        href="https://linkedin.com/in/jackbfowler/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="navbar-social-icon"
+                        aria-label="LinkedIn Profile"
+                    >
+                        <img src={linkedinIcon} alt="LinkedIn" width="20" height="20" />
+                    </a>
+                </div>
 
                 {isMobile ? (
                     <>

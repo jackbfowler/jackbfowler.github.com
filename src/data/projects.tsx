@@ -9,6 +9,18 @@ const getSusAnalyImage = (name: string) => susAnalyImages[`../assets/Projects/Su
 const wftImages = import.meta.glob('../assets/Projects/WFT/*', { eager: true, as: 'url' });
 const getWFTImage = (name: string) => wftImages[`../assets/Projects/WFT/${name}`];
 
+// Glob import for 2025Upright images
+const uprightImages = import.meta.glob('../assets/Projects/2025Upright/*', { eager: true, as: 'url' });
+const getUprightImage = (name: string) => uprightImages[`../assets/Projects/2025Upright/${name}`];
+
+// Glob import for DiMES images
+const dimesImages = import.meta.glob('../assets/Projects/DiMES/*', { eager: true, as: 'url' });
+const getDiMESImage = (name: string) => dimesImages[`../assets/Projects/DiMES/${name}`];
+
+// Glob import for Formlabs images
+const formlabsImages = import.meta.glob('../assets/Projects/Formlabs/*', { eager: true, as: 'url' });
+const getFormlabsImage = (name: string) => formlabsImages[`../assets/Projects/Formlabs/${name}`];
+
 export interface Project {
     id: string;
     title: string;
@@ -96,6 +108,7 @@ export const projects: Project[] = [
 
         ),
     },
+
     {//Wheel Force Transducer
         id: '2',
         title: 'Wheel Force Transducer',
@@ -166,109 +179,223 @@ export const projects: Project[] = [
             </div>
         ),
     },
-    {//2025 Baja SAE Steering System
+
+    {//Formlabs - SLS R&D Internship
+        id: '9',
+        title: 'Formlabs - SLS R&D Internship',
+        description: '',
+        tags: ['Additive', 'Onshape', 'nTop', 'Inspection'],
+        imageUrl: getFormlabsImage('FormlabsCover.jpeg') as string,
+        slug: 'formlabs-sls-rd-internship',
+        content: (
+            <div>
+                <div style={{ backgroundColor: 'rgba(234, 179, 8, 0.1)', border: '1px solid rgba(234, 179, 8, 0.5)', color: '#eab308', padding: '1rem', borderRadius: '8px', textAlign: 'center', fontWeight: 'bold', marginBottom: '2rem' }}>
+                    All content shown is non-controlled, and approved for public display
+                </div>
+
+                <p style={{ marginBottom: '1rem', color: 'var(--stone-300)', lineHeight: '1.6', textAlign: 'left' }}>
+                    I worked in Boston, MA at Formlabs HQ on R&D for SLS printers, both current and next generation. Below is a broad list of skills I acquired during my time there:
+                </p>
+                <br /><br />
+
+                <ul style={{ listStyleType: 'disc', paddingLeft: '20px', marginBottom: '1.5rem', color: 'var(--stone-300)', lineHeight: '1.6', textAlign: 'left' }}>
+                    <li>Greatly improved knowledge of polymer material science, and how it applies to SLS printer parameters and design.</li>
+                    <li>Developed and executed characterization procedures to acquire accurate product performance data, comparing metrics to previous generations and competitors.</li>
+                    <li>Used Onshape to design parts, inspect printer geometry, and overall familiarize myself with using the enterprise implementation of the software.</li>
+                    <li>Used various high-accuracy measurement devices on samples I designed. Technologies included CMM, 3D scanning profilometry, and I even developed a custom inspection routine and software for a low-cost contact image scanner.</li>
+                    <li>Used Python with statistics, numerical, and computer vision libraries to process, analyze, and visualize data. This sped up workflows and allowed me to form high-level product takeaways regarding my data.</li>
+                    <li>Built a deep understanding of end-use part applications across materials (Nylon 12 variants, TPUs, and engineering photopolymer resins) and manufacturing conditions. I applied first-principle knowledge of mechanical design and material science to understand part applications and use cases.</li>
+                    <li>Built skills around thermal FEM models, and understanding how changing process variables impacted final outcomes.</li>
+                    <li>Contributed at product-level design reviews, presenting on assigned and self-started projects, further building my skills around presenting data-backed conclusions in a results-driven, IP-controlled, and fast-paced environment.</li>
+                </ul>
+
+                <p style={{ fontStyle: 'italic', marginBottom: '1rem', color: 'var(--stone-300)', lineHeight: '1.6', textAlign: 'left' }}>
+                    Thank you to the SLS team, summer interns, Boston, and Formlabs for making it a fantastic summer!
+                </p>
+
+                <div style={{ marginTop: '2rem', display: 'flex', justifyContent: 'center' }}>
+                    <img
+                        src={getFormlabsImage('FormlabsRedSox.jpg') as string}
+                        alt="Formlabs Red Sox Game"
+                        style={{ width: '100%', maxWidth: '800px', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
+                    />
+                </div>
+            </div>
+        ),
+    },
+
+    {//2025 Baja SAE Uprights
         id: '3',
+        title: '2025 Baja SAE Uprights',
+        description: 'Design assist and 5-axis machining of the rear uprights for the 2025 Baja SAE car.',
+        tags: ['Baja SAE', 'Fusion360', 'Solidworks', 'Machining', 'Inspection'],
+        imageUrl: getUprightImage('UprightCover.jpeg') as string,
+        slug: '2025-baja-sae-uprights',
+        content: (
+            <div>
+                <div style={{ marginBottom: '2rem', fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--stone-300)' }}>
+                    <p>
+                        I assisted the design, and fully 5 axis machined our rear uprights for the 2025 car. This involved assisting the work of the main designer, Hayden Purcell, using my experience to point out opportunities to improve the manufacturability: simplifying CAD geometry to drive toolpaths, cutting down on difficult features, ensuring tool access, and developing GD&T checks to be performed for critical tolerances.
+                    </p>
+                </div>
+                <ZigzagLayout items={[
+                    {
+                        id: 1,
+                        title: 'Design',
+                        text: <p>The design was done in Solidworks, with easy collaboration via the Solidworks PDM I setup for the team. I rebuilt the model parametrically, ensuring good geometry and CAD practices.</p>,
+                        media: getUprightImage('UprightSW.png') as string,
+                    },
+                    {
+                        id: 2,
+                        title: 'CAM',
+                        text: <p>I wrote the CAM in Fusion360, with accurate workholding and machine simulation.</p>,
+                        media: (
+                            <div style={{ display: 'flex', gap: '1rem' }}>
+                                <img src={getUprightImage('UprightCAM1.png') as string} alt="Fusion360 CAM 1" style={{ width: 'calc(50% - 0.5rem)', borderRadius: '8px', objectFit: 'cover' }} />
+                                <img src={getUprightImage('UprightCAM2.png') as string} alt="Fusion360 CAM 2" style={{ width: 'calc(50% - 0.5rem)', borderRadius: '8px', objectFit: 'cover' }} />
+                            </div>
+                        ),
+                    },
+                    {
+                        id: 3,
+                        title: 'Machining',
+                        text: <p>The part was machined on a UMC500, all in one setup. It was tabbed off as the last operation, which was very satisfying.</p>,
+                        media: getUprightImage('UprightPost.jpg') as string,
+                    },
+                    {
+                        id: 4,
+                        title: 'Inspection',
+                        text: <p>Inspection was then done traditionally on a surface plate, and also with a Creaform HandySCAN Black. It was especially interesting comparing the 10x tighter tolerances held by these versus our previous welded upright.</p>,
+                        media: (
+                            <div style={{ display: 'flex', gap: '1rem' }}>
+                                <img src={getUprightImage('UprightInspectCNC.png') as string} alt="Inspection CNC" style={{ width: 'calc(50% - 0.5rem)', borderRadius: '8px', objectFit: 'cover' }} />
+                                <img src={getUprightImage('UprightInspectWeld.png') as string} alt="Inspection Weld" style={{ width: 'calc(50% - 0.5rem)', borderRadius: '8px', objectFit: 'cover' }} />
+                            </div>
+                        ),
+                    }
+                ]} />
+            </div>
+        ),
+    },
+
+    {//2025 Baja SAE Steering System
+        id: '8',
         title: '2025 Baja SAE Steering System',
         description: '',
         tags: ['Baja SAE', 'Solidworks', 'ANSYS', 'Machining'],
         imageUrl: 'https://via.placeholder.com/400',
-        slug: 'beta-app',
+        slug: '2025-baja-sae-steering-system',
         content: React.createElement('div', null,
             React.createElement('h2', null, ''),
             React.createElement('p', null, '')
         ),
     },
+
     {//316SS Furnace Exhaust Adapter
         id: '4',
         title: '316SS Furnace Exhaust Adapter',
         description: '',
         tags: ['Machining', 'Solidworks'],
         imageUrl: 'https://via.placeholder.com/400',
-        slug: 'beta-app',
+        slug: '316ss-furnace-exhaust-adapter',
         content: React.createElement('div', null,
             React.createElement('h2', null, ''),
             React.createElement('p', null, '')
         ),
     },
-    {//DIII-D Fusion Tokomak - Tungstun DiMES Samples 
+
+    {//DIII-D Fusion Tokamak - Tungsten DiMES Samples 
         id: '5',
-        title: 'DIII-D Fusion Tokomak - Tungstun DiMES Samples',
-        description: '',
-        tags: ['Machining', 'Solidworks', 'NX', 'Additive',],
-        imageUrl: 'https://via.placeholder.com/400',
-        slug: 'beta-app',
-        content: React.createElement('div', null,
-            React.createElement('h2', null, ''),
-            React.createElement('p', null, '')
+        title: 'Tungsten DiMES Samples for DIII-D Fusion Tokamak',
+        description: 'Manufacturing notoriously difficult tungsten samples for fusion plasma research.',
+        tags: ['Machining', 'Solidworks', 'NX', 'Additive'],
+        imageUrl: getDiMESImage('DiMESCover.jpg') as string,
+        slug: 'diii-d-fusion-tokamak',
+        content: (
+            <div>
+                <div style={{ marginBottom: '2rem', fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--stone-300)' }}>
+                    <p>
+                        I had the pleasure of helping Aaliyah Zuniga with some of her research around Fusion Plasma Auxiliaries Characterization, specifically looking at additively manufactured tungsten as a material to be used in fusion reactors. I assisted with the manufacturing of the tungsten samples.
+                    </p>
+                </div>
+                <ZigzagLayout items={[
+                    {
+                        id: 1,
+                        title: 'Printing',
+                        text: <p>Tungsten samples with specific grain orientations were printed via EBM-PBF. By controlling scan strategy, 001 columnar or 111 equiaxed grains were formed.</p>,
+                        media: getDiMESImage('DiMESEBM.jpg') as string,
+                    },
+                    {
+                        id: 2,
+                        title: 'Sectioning and EDM',
+                        text: <p>Using ESPRIT, I created wire EDM programs to section the printed samples, and then cut the XY cross-section of the final sample.</p>,
+                        media: getDiMESImage('DiMESEDM.jpeg') as string,
+                    },
+                    {
+                        id: 3,
+                        title: 'Grinding',
+                        text: <p>Using a Haas GmbH Multigrind grinding center, I developed fixturing, wrote CAM, and successfully ground the tungsten samples. CAM was written both on machine conversationally, and with NX CAM</p>,
+                        media: getDiMESImage('DiMESGrinding.jpg') as string,
+                    },
+                    {
+                        id: 4,
+                        text: <p>I machined about a dozen of these samples, maintaining tolerances throughout.</p>,
+                        media: getDiMESImage('DiMESInspec.jpg') as string,
+                    }
+                ]} />
+            </div>
         ),
     },
-    {//FIRST Robotics Competition 
-        id: '6',
-        title: 'FIRST Robotics Competition',
-        description: '',
-        tags: ['FIRST', 'Onshape', 'Fusion360', 'Additive', 'Robotics'],
-        imageUrl: 'https://via.placeholder.com/400',
-        slug: 'beta-app',
-        content: React.createElement('div', null,
-            React.createElement('h2', null, ''),
-            React.createElement('p', null, '')
-        ),
-    },
-    {//Robotic Self Balancing cube 
-        id: '7',
-        title: 'Robotic Self Balancing cube',
-        description: '',
-        tags: ['Robotics', 'Onshape', 'Additive',],
-        imageUrl: 'https://via.placeholder.com/400',
-        slug: 'beta-app',
-        content: React.createElement('div', null,
-            React.createElement('h2', null, ''),
-            React.createElement('p', null, '')
-        ),
-    },
-    {//2025 Baja SAE Uprights
-        id: '8',
-        title: '2025 Baja SAE Uprights',
-        description: '',
-        tags: ['Baja SAE', 'Fusion360', 'Solidworks', 'Machining'],
-        imageUrl: 'https://via.placeholder.com/400',
-        slug: 'beta-app',
-        content: React.createElement('div', null,
-            React.createElement('h2', null, ''),
-            React.createElement('p', null, '')
-        ),
-    },
-    {//Formlabs - SLS R&D Internship
-        id: '9',
-        title: 'Formlabs - SLS R&D Internship',
-        description: '',
-        tags: ['Additive', 'Onshape', 'nTop', 'Inspection'],
-        imageUrl: 'https://via.placeholder.com/400',
-        slug: 'beta-app',
-        content: React.createElement('div', null,
-            React.createElement('h2', null, ''),
-            React.createElement('p', null, '')
-        ),
-    },
+
     {//DMG MORI - Additive R&D Internship
         id: '10',
         title: 'DMG MORI - Additive R&D Internship',
         description: '',
         tags: ['Additive', 'NX', 'Inspection',],
         imageUrl: 'https://via.placeholder.com/400',
-        slug: 'beta-app',
+        slug: 'dmg-mori-additive-rd-internship',
+        content: (
+            <div>
+                <div style={{ backgroundColor: 'rgba(234, 179, 8, 0.1)', border: '1px solid rgba(234, 179, 8, 0.5)', color: '#eab308', padding: '1rem', borderRadius: '8px', textAlign: 'center', fontWeight: 'bold', marginBottom: '2rem' }}>
+                    All content shown is non-controlled, and approved for public display
+                </div>
+            </div>
+        ),
+    },
+
+    {//FIRST Robotics Competition 
+        id: '6',
+        title: 'FIRST Robotics Competition',
+        description: '',
+        tags: ['FIRST', 'Onshape', 'Fusion360', 'Additive', 'Robotics'],
+        imageUrl: 'https://via.placeholder.com/400',
+        slug: 'first-robotics-competition',
         content: React.createElement('div', null,
             React.createElement('h2', null, ''),
             React.createElement('p', null, '')
         ),
     },
+
+    {//Robotic Self Balancing cube 
+        id: '7',
+        title: 'Robotic Self Balancing cube',
+        description: '',
+        tags: ['Robotics', 'Onshape', 'Additive',],
+        imageUrl: 'https://via.placeholder.com/400',
+        slug: 'robotic-self-balancing-cube',
+        content: React.createElement('div', null,
+            React.createElement('h2', null, ''),
+            React.createElement('p', null, '')
+        ),
+    },
+
     {//Turbine Flow Meter
         id: '11',
         title: 'Turbine Flow Meter',
         description: '',
         tags: ['Machining', 'Fusion360', 'Inspection',],
         imageUrl: 'https://via.placeholder.com/400',
-        slug: 'beta-app',
+        slug: 'turbine-flow-meter',
         content: React.createElement('div', null,
             React.createElement('h2', null, ''),
             React.createElement('p', null, '')

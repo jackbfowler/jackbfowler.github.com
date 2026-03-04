@@ -14,10 +14,29 @@
     position: relative;
 }
 
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
 .navbar-logo {
     font-size: 1.5rem;
     font-weight: bold;
     color: var(--stone-50);
+    text-decoration: none;
+}
+
+.navbar-social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--stone-400);
+    transition: color 0.3s ease;
+}
+
+.navbar-social-icon:hover {
+    color: #0a66c2;
 }
 
 .navbar-links {
