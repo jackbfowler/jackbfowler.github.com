@@ -16,9 +16,6 @@ const Projects: React.FC = () => {
         <div className="container section" style={{ paddingTop: '100px' }}>
             <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
                 <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>Projects</h2>
-                <p style={{ color: 'var(--stone-400)', maxWidth: '600px', margin: '0 auto' }}>
-                    A collection of my work, experiments, and open source contributions.
-                </p>
             </div>
 
             <ProjectFilter

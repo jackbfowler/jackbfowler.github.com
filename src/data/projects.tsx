@@ -21,6 +21,14 @@ const getDiMESImage = (name: string) => dimesImages[`../assets/Projects/DiMES/${
 const formlabsImages = import.meta.glob('../assets/Projects/Formlabs/*', { eager: true, as: 'url' });
 const getFormlabsImage = (name: string) => formlabsImages[`../assets/Projects/Formlabs/${name}`];
 
+// Glob import for 316SS Furnace Adapter images
+const mtiImages = import.meta.glob('../assets/Projects/316FurnaceAdapter/*', { eager: true, as: 'url' });
+const getMTIImage = (name: string) => mtiImages[`../assets/Projects/316FurnaceAdapter/${name}`];
+
+// Glob import for HPT Anvil images
+const hptImages = import.meta.glob('../assets/Projects/HPTAnvil/*', { eager: true, as: 'url' });
+const getHPTImage = (name: string) => hptImages[`../assets/Projects/HPTAnvil/${name}`];
+
 export interface Project {
     id: string;
     title: string;
@@ -184,7 +192,7 @@ export const projects: Project[] = [
         id: '9',
         title: 'Formlabs - SLS R&D Internship',
         description: '',
-        tags: ['Additive', 'Onshape', 'nTop', 'Inspection'],
+        tags: ['Additive', 'Material Science', 'Onshape', 'nTop', 'Inspection'],
         imageUrl: getFormlabsImage('FormlabsCover.jpeg') as string,
         slug: 'formlabs-sls-rd-internship',
         content: (
@@ -294,13 +302,109 @@ export const projects: Project[] = [
     {//316SS Furnace Exhaust Adapter
         id: '4',
         title: '316SS Furnace Exhaust Adapter',
-        description: '',
-        tags: ['Machining', 'Solidworks'],
-        imageUrl: 'https://via.placeholder.com/400',
+        description: 'Consulted and fully machined 316SS furnace adapters for a Material Science lab.',
+        tags: ['Machining', 'Solidworks', 'Inspection'],
+        imageUrl: getMTIImage('MTIFinal.jpeg') as string,
         slug: '316ss-furnace-exhaust-adapter',
-        content: React.createElement('div', null,
-            React.createElement('h2', null, ''),
-            React.createElement('p', null, '')
+        content: (
+            <div>
+                <div style={{ marginBottom: '2rem', fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--stone-300)' }}>
+                    <p>
+                        I consulted on and fully machined three 316SS furnace adapters for a Material Science lab.
+                    </p>
+                    <p style={{ marginTop: '1rem' }}>
+                        I built skills in DFM: providing design guidance around specific machine capabilities and tooling selection, ensuring sufficient and effective workholding, and correctly communicating tolerances and critical features.
+                    </p>
+                </div>
+
+                <p style={{ marginTop: '1rem', marginBottom: '2rem', fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--stone-300)' }}>
+                    The part was programmed conversationally on the Matrix 2, workheld by bored out jaws and machined in two setups. Inspection was done traditionally with a height gauge and surface plate.
+                </p>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', alignItems: 'center' }}>
+                    <video
+                        src={getMTIImage('MTIvid.mov') as string}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
+                    />
+                    <img
+                        src={getMTIImage('MTISetup.jpeg') as string}
+                        alt="Machining Setup"
+                        style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
+                    />
+                    <img
+                        src={getMTIImage('MTIProgress.jpeg') as string}
+                        alt="Machining Progress"
+                        style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
+                    />
+                    <img
+                        src={getMTIImage('MTIProgram.jpeg') as string}
+                        alt="Programming and Workholding"
+                        style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
+                    />
+                </div>
+            </div>
+        ),
+    },
+
+    {//H13 HPT Anvil
+        id: '12',
+        title: 'H13 HPT Anvil',
+        description: 'Machined and heat treated an H13 anvil for High-Pressure Torsion research.',
+        tags: ['Machining', 'Inspection', 'Material Science'],
+        imageUrl: getHPTImage('HPTFinal.jpeg') as string,
+        slug: 'h13-hpt-anvil',
+        content: (
+            <div>
+                <div style={{ marginBottom: '2rem', fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--stone-300)' }}>
+                    <p>
+                        I machined an anvil used in the <a href="https://en.wikipedia.org/wiki/High-pressure_torsion" target="_blank" rel="noopener noreferrer" style={{ color: '#60a5fa', textDecoration: 'underline' }}>High-Pressure Torsion (HPT)</a> process, a method to refine grain structure with high pressure and shear force, yielding unique material properties. Manufacturing this part supported Material Science Department research.
+                    </p>
+                    <p style={{ marginTop: '1rem' }}>
+                        I received the part file, communicated any DFM changes, selected tooling, created machinist drawings, and programmed conversationally on the machine (my first part done this way!).
+                    </p>
+                </div>
+
+                <div style={{ display: 'flex', gap: '1.5rem', marginBottom: '2rem' }}>
+                    <img
+                        src={getHPTImage('HPTAnvilProgress.jpeg') as string}
+                        alt="HPT Anvil in progress"
+                        style={{ width: '50%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', objectFit: 'cover' }}
+                    />
+                    <img
+                        src={getHPTImage('HPTAnvilInspect.jpeg') as string}
+                        alt="HPT Anvil inspection"
+                        style={{ width: '50%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', objectFit: 'cover' }}
+                    />
+                </div>
+
+                <div style={{ marginBottom: '2rem', fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--stone-300)' }}>
+                    <p>
+                        I then heat treated the H13, following literature from ASM, ensuring understanding of each step, how it impacts the microstructure of the steel, which regions to hit and avoid on the TTT and CCT diagrams, and familiarizing myself with heat treat best practices. The heat treatment was successful and yielded a final hardness of 52 HRC.
+                    </p>
+                </div>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                    <img
+                        src={getHPTImage('HPTHot.jpeg') as string}
+                        alt="Hot anvil after heat treatment"
+                        style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
+                    />
+                    <img
+                        src={getHPTImage('HPTFurnace.jpeg') as string}
+                        alt="Furnace heat treatment"
+                        style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
+                    />
+                    <img
+                        src={getHPTImage('HPTTTT.webp') as string}
+                        alt="TTT diagram reference"
+                        style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
+                    />
+                </div>
+            </div>
         ),
     },
 
@@ -308,7 +412,7 @@ export const projects: Project[] = [
         id: '5',
         title: 'Tungsten DiMES Samples for DIII-D Fusion Tokamak',
         description: 'Manufacturing notoriously difficult tungsten samples for fusion plasma research.',
-        tags: ['Machining', 'Solidworks', 'NX', 'Additive'],
+        tags: ['Machining', 'Solidworks', 'NX', 'Additive', 'Material Science'],
         imageUrl: getDiMESImage('DiMESCover.jpg') as string,
         slug: 'diii-d-fusion-tokamak',
         content: (
@@ -351,7 +455,7 @@ export const projects: Project[] = [
         id: '10',
         title: 'DMG MORI - Additive R&D Internship',
         description: '',
-        tags: ['Additive', 'NX', 'Inspection',],
+        tags: ['Additive', 'NX', 'Inspection', 'Material Science'],
         imageUrl: 'https://via.placeholder.com/400',
         slug: 'dmg-mori-additive-rd-internship',
         content: (
@@ -363,45 +467,45 @@ export const projects: Project[] = [
         ),
     },
 
-    {//FIRST Robotics Competition 
-        id: '6',
-        title: 'FIRST Robotics Competition',
-        description: '',
-        tags: ['FIRST', 'Onshape', 'Fusion360', 'Additive', 'Robotics'],
-        imageUrl: 'https://via.placeholder.com/400',
-        slug: 'first-robotics-competition',
-        content: React.createElement('div', null,
-            React.createElement('h2', null, ''),
-            React.createElement('p', null, '')
-        ),
-    },
-
-    {//Robotic Self Balancing cube 
-        id: '7',
-        title: 'Robotic Self Balancing cube',
-        description: '',
-        tags: ['Robotics', 'Onshape', 'Additive',],
-        imageUrl: 'https://via.placeholder.com/400',
-        slug: 'robotic-self-balancing-cube',
-        content: React.createElement('div', null,
-            React.createElement('h2', null, ''),
-            React.createElement('p', null, '')
-        ),
-    },
-
-    {//Turbine Flow Meter
-        id: '11',
-        title: 'Turbine Flow Meter',
-        description: '',
-        tags: ['Machining', 'Fusion360', 'Inspection',],
-        imageUrl: 'https://via.placeholder.com/400',
-        slug: 'turbine-flow-meter',
-        content: React.createElement('div', null,
-            React.createElement('h2', null, ''),
-            React.createElement('p', null, '')
-        ),
-    },
+    // {//FIRST Robotics Competition 
+    //     id: '6',
+    //     title: 'FIRST Robotics Competition',
+    //     description: '',
+    //     tags: ['FIRST', 'Onshape', 'Fusion360', 'Additive', 'Robotics'],
+    //     imageUrl: 'https://via.placeholder.com/400',
+    //     slug: 'first-robotics-competition',
+    //     content: React.createElement('div', null,
+    //         React.createElement('h2', null, ''),
+    //         React.createElement('p', null, '')
+    //     ),
+    // },
+    // {//Robotic Self Balancing cube 
+    //     id: '7',
+    //     title: 'Robotic Self Balancing cube',
+    //     description: '',
+    //     tags: ['Robotics', 'Onshape', 'Additive',],
+    //     imageUrl: 'https://via.placeholder.com/400',
+    //     slug: 'robotic-self-balancing-cube',
+    //     content: React.createElement('div', null,
+    //         React.createElement('h2', null, ''),
+    //         React.createElement('p', null, '')
+    //     ),
+    // },
+    // {//Turbine Flow Meter
+    //     id: '11',
+    //     title: 'Turbine Flow Meter',
+    //     description: '',
+    //     tags: ['Machining', 'Fusion360', 'Inspection',],
+    //     imageUrl: 'https://via.placeholder.com/400',
+    //     slug: 'turbine-flow-meter',
+    //     content: React.createElement('div', null,
+    //         React.createElement('h2', null, ''),
+    //         React.createElement('p', null, '')
+    //     ),
+    // },
 ];
+
+// Aquapack, sandvik, E101 final, dynamics robot arm, 
 
 export const getAllTags = (): string[] => {
     const tags = new Set<string>();
