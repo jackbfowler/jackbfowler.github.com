@@ -89,7 +89,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/projects/:slug" element={<ProjectDetail />} />
-            <Route path="/resume" element={<div className="container section" style={{ paddingTop: '100px' }}><h2>Resume Coming Soon</h2></div>} />
+            <Route path="/resume" element={<div className="container section" style={{ paddingTop: '100px' }}><h2>Please reach out to me at jbfowle3@ncsu.edu for a tailored resume.</h2></div>} />
           </Routes>
         </main>
         <Footer />

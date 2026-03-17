@@ -286,18 +286,18 @@ export const projects: Project[] = [
         ),
     },
 
-    {//2025 Baja SAE Steering System
-        id: '8',
-        title: '2025 Baja SAE Steering System',
-        description: '',
-        tags: ['Baja SAE', 'Solidworks', 'ANSYS', 'Machining'],
-        imageUrl: 'https://via.placeholder.com/400',
-        slug: '2025-baja-sae-steering-system',
-        content: React.createElement('div', null,
-            React.createElement('h2', null, ''),
-            React.createElement('p', null, '')
-        ),
-    },
+    // {//2025 Baja SAE Steering System
+    //     id: '8',
+    //     title: '2025 Baja SAE Steering System',
+    //     description: '',
+    //     tags: ['Baja SAE', 'Solidworks', 'ANSYS', 'Machining'],
+    //     imageUrl: 'https://via.placeholder.com/400',
+    //     slug: '2025-baja-sae-steering-system',
+    //     content: React.createElement('div', null,
+    //         React.createElement('h2', null, ''),
+    //         React.createElement('p', null, '')
+    //     ),
+    // },
 
     {//316SS Furnace Exhaust Adapter
         id: '4',
@@ -451,21 +451,21 @@ export const projects: Project[] = [
         ),
     },
 
-    {//DMG MORI - Additive R&D Internship
-        id: '10',
-        title: 'DMG MORI - Additive R&D Internship',
-        description: '',
-        tags: ['Additive', 'NX', 'Inspection', 'Material Science'],
-        imageUrl: 'https://via.placeholder.com/400',
-        slug: 'dmg-mori-additive-rd-internship',
-        content: (
-            <div>
-                <div style={{ backgroundColor: 'rgba(234, 179, 8, 0.1)', border: '1px solid rgba(234, 179, 8, 0.5)', color: '#eab308', padding: '1rem', borderRadius: '8px', textAlign: 'center', fontWeight: 'bold', marginBottom: '2rem' }}>
-                    All content shown is non-controlled, and approved for public display
-                </div>
-            </div>
-        ),
-    },
+    // {//DMG MORI - Additive R&D Internship
+    //     id: '10',
+    //     title: 'DMG MORI - Additive R&D Internship',
+    //     description: '',
+    //     tags: ['Additive', 'NX', 'Inspection', 'Material Science'],
+    //     imageUrl: 'https://via.placeholder.com/400',
+    //     slug: 'dmg-mori-additive-rd-internship',
+    //     content: (
+    //         <div>
+    //             <div style={{ backgroundColor: 'rgba(234, 179, 8, 0.1)', border: '1px solid rgba(234, 179, 8, 0.5)', color: '#eab308', padding: '1rem', borderRadius: '8px', textAlign: 'center', fontWeight: 'bold', marginBottom: '2rem' }}>
+    //                 All content shown is non-controlled, and approved for public display
+    //             </div>
+    //         </div>
+    //     ),
+    // },
 
     // {//FIRST Robotics Competition 
     //     id: '6',
