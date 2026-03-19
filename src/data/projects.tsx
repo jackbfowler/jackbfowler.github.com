@@ -1,6 +1,8 @@
 import React from 'react';
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
+import 'katex/dist/katex.min.css';
+import { InlineMath, BlockMath } from 'react-katex';
 
 import ZigzagLayout from '../components/ZigzagLayout';
 
@@ -35,6 +37,10 @@ const get2025SteerImage = (name: string) => steerImages[`../assets/Projects/2025
 // Glob import for HPT Anvil images
 const hptImages = import.meta.glob('../assets/Projects/HPTAnvil/*', { eager: true, as: 'url' });
 const getHPTImage = (name: string) => hptImages[`../assets/Projects/HPTAnvil/${name}`];
+
+// Glob import for MAE208 images
+const mae208Images = import.meta.glob('../assets/Projects/MAE208Final/*', { eager: true, as: 'url' });
+const getMAE208Image = (name: string) => mae208Images[`../assets/Projects/MAE208Final/${name}`];
 
 export interface Project {
     id: string;
@@ -265,9 +271,9 @@ export const projects: Project[] = [
                         title: 'CAM',
                         text: <p>I wrote the CAM in Fusion360, with accurate workholding and machine simulation.</p>,
                         media: (
-                            <div style={{ display: 'flex', gap: '1rem' }}>
-                                <Zoom><img src={getUprightImage('UprightCAM1.png') as string} alt="Fusion360 CAM 1" style={{ width: '100%', borderRadius: '8px', objectFit: 'cover' }} /></Zoom>
-                                <Zoom><img src={getUprightImage('UprightCAM2.png') as string} alt="Fusion360 CAM 2" style={{ width: '100%', borderRadius: '8px', objectFit: 'cover' }} /></Zoom>
+                            <div style={{ display: 'flex', gap: '1rem', width: '100%' }}>
+                                <div style={{ flex: 1 }}><Zoom><img src={getUprightImage('UprightCAM1.png') as string} alt="Fusion360 CAM 1" style={{ width: '100%', borderRadius: '8px', objectFit: 'cover' }} /></Zoom></div>
+                                <div style={{ flex: 1 }}><Zoom><img src={getUprightImage('UprightCAM2.png') as string} alt="Fusion360 CAM 2" style={{ width: '100%', borderRadius: '8px', objectFit: 'cover' }} /></Zoom></div>
                             </div>
                         ),
                     },
@@ -282,9 +288,9 @@ export const projects: Project[] = [
                         title: 'Inspection',
                         text: <p>Inspection was then done traditionally on a surface plate, and also with a Creaform HandySCAN Black. It was especially interesting comparing the 10x tighter tolerances held by these versus our previous welded upright.</p>,
                         media: (
-                            <div style={{ display: 'flex', gap: '1rem' }}>
-                                <Zoom><img src={getUprightImage('UprightInspectCNC.png') as string} alt="Inspection CNC" style={{ width: '100%', borderRadius: '8px', objectFit: 'cover' }} /></Zoom>
-                                <Zoom><img src={getUprightImage('UprightInspectWeld.png') as string} alt="Inspection Weld" style={{ width: '100%', borderRadius: '8px', objectFit: 'cover' }} /></Zoom>
+                            <div style={{ display: 'flex', gap: '1rem', width: '100%' }}>
+                                <div style={{ flex: 1 }}><Zoom><img src={getUprightImage('UprightInspectCNC.png') as string} alt="Inspection CNC" style={{ width: '100%', borderRadius: '8px', objectFit: 'cover' }} /></Zoom></div>
+                                <div style={{ flex: 1 }}><Zoom><img src={getUprightImage('UprightInspectWeld.png') as string} alt="Inspection Weld" style={{ width: '100%', borderRadius: '8px', objectFit: 'cover' }} /></Zoom></div>
                             </div>
                         ),
                     }
@@ -330,9 +336,9 @@ export const projects: Project[] = [
                             </p>
                         ),
                         media: (
-                            <div style={{ display: 'flex', gap: '1rem' }}>
-                                <Zoom><img src={get2025SteerImage('2024Steer.png') as string} alt="2024 Steer Assembly" style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', objectFit: 'cover' }} /></Zoom>
-                                <Zoom><img src={get2025SteerImage('2025Steer.png') as string} alt="2025 Steer Assembly" style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', objectFit: 'cover' }} /></Zoom>
+                            <div style={{ display: 'flex', gap: '1rem', width: '100%' }}>
+                                <div style={{ flex: 1 }}><Zoom><img src={get2025SteerImage('2024Steer.png') as string} alt="2024 Steer Assembly" style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', objectFit: 'cover' }} /></Zoom></div>
+                                <div style={{ flex: 1 }}><Zoom><img src={get2025SteerImage('2025Steer.png') as string} alt="2025 Steer Assembly" style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', objectFit: 'cover' }} /></Zoom></div>
                             </div>
                         ),
                     },
@@ -340,9 +346,9 @@ export const projects: Project[] = [
                         id: 3,
                         text: <p>Then, static FEA simulation was done, with some hand calculations around beam bending to validate, using data collected off of strain gauges I applied to the tie rod. I worked with our electronics team to integrate a good amplifier, and record the data to our DAQ.</p>,
                         media: (
-                            <div style={{ display: 'flex', gap: '1rem' }}>
-                                <Zoom><img src={get2025SteerImage('straintierod.png') as string} alt="Strain Gauge" style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', objectFit: 'cover' }} /></Zoom>
-                                <Zoom><img src={get2025SteerImage('steerFEA.jpg') as string} alt="Steering FEA" style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', objectFit: 'cover' }} /></Zoom>
+                            <div style={{ display: 'flex', gap: '1rem', width: '100%' }}>
+                                <div style={{ flex: 1 }}><Zoom><img src={get2025SteerImage('straintierod.png') as string} alt="Strain Gauge" style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', objectFit: 'cover' }} /></Zoom></div>
+                                <div style={{ flex: 1 }}><Zoom><img src={get2025SteerImage('steerFEA.jpg') as string} alt="Steering FEA" style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', objectFit: 'cover' }} /></Zoom></div>
                             </div>
                         ),
                     },
@@ -364,164 +370,164 @@ export const projects: Project[] = [
                     </p>
                 </div>
 
-                <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center' }}>
-                    <Zoom><img src={get2025SteerImage('steerfinalbot.png') as string} alt="Final Steering Assembly Bottom" style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', objectFit: 'cover' }} /></Zoom>
-                    <Zoom><img src={get2025SteerImage('steerfinaltop.png') as string} alt="Final Steering Assembly Top" style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', objectFit: 'cover' }} /></Zoom>
+                <div style={{ display: 'flex', gap: '1.5rem', width: '100%' }}>
+                    <div style={{ flex: 1 }}><Zoom><img src={get2025SteerImage('steerfinalbot.png') as string} alt="Final Steering Assembly Bottom" style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', objectFit: 'cover' }} /></Zoom></div>
+                    <div style={{ flex: 1 }}><Zoom><img src={get2025SteerImage('steerfinaltop.png') as string} alt="Final Steering Assembly Top" style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', objectFit: 'cover' }} /></Zoom></div>
                 </div>
             </div >
         ),
     },
 
-{//316SS Furnace Exhaust Adapter
-    id: '4',
+    {//316SS Furnace Exhaust Adapter
+        id: '4',
         title: '316SS Furnace Exhaust Adapter',
-            description: 'Consulted and fully machined 316SS furnace adapters for a Material Science lab.',
-                tags: ['Machining', 'Solidworks', 'Inspection'],
-                    imageUrl: getMTIImage('MTIFinal.jpeg') as string,
-                        slug: '316ss-furnace-exhaust-adapter',
-                            content: (
-                                <div>
-                                    <div style={{ marginBottom: '2rem', fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--stone-300)' }}>
-                                        <p>
-                                            I consulted on and fully machined three 316SS furnace adapters for a Material Science lab.
-                                        </p>
-                                        <p style={{ marginTop: '1rem' }}>
-                                            I built skills in DFM: providing design guidance around specific machine capabilities and tooling selection, ensuring sufficient and effective workholding, and correctly communicating tolerances and critical features.
-                                        </p>
-                                    </div>
+        description: 'Consulted and fully machined 316SS furnace adapters for a Material Science lab.',
+        tags: ['Machining', 'Solidworks', 'Inspection'],
+        imageUrl: getMTIImage('MTIFinal.jpeg') as string,
+        slug: '316ss-furnace-exhaust-adapter',
+        content: (
+            <div>
+                <div style={{ marginBottom: '2rem', fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--stone-300)' }}>
+                    <p>
+                        I consulted on and fully machined three 316SS furnace adapters for a Material Science lab.
+                    </p>
+                    <p style={{ marginTop: '1rem' }}>
+                        I built skills in DFM: providing design guidance around specific machine capabilities and tooling selection, ensuring sufficient and effective workholding, and correctly communicating tolerances and critical features.
+                    </p>
+                </div>
 
-                                    <p style={{ marginTop: '1rem', marginBottom: '2rem', fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--stone-300)' }}>
-                                        The part was programmed conversationally on the Matrix 2, workheld by bored out jaws and machined in two setups. Inspection was done traditionally with a height gauge and surface plate.
-                                    </p>
+                <p style={{ marginTop: '1rem', marginBottom: '2rem', fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--stone-300)' }}>
+                    The part was programmed conversationally on the Matrix 2, workheld by bored out jaws and machined in two setups. Inspection was done traditionally with a height gauge and surface plate.
+                </p>
 
-                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', alignItems: 'center' }}>
-                                        <video
-                                            src={getMTIImage('MTIvid.mov') as string}
-                                            autoPlay
-                                            loop
-                                            muted
-                                            playsInline
-                                            style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
-                                        />
-                                        <Zoom><img
-                                            src={getMTIImage('MTISetup.jpeg') as string}
-                                            alt="Machining Setup"
-                                            style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
-                                        /></Zoom>
-                                        <Zoom><img
-                                            src={getMTIImage('MTIProgress.jpeg') as string}
-                                            alt="Machining Progress"
-                                            style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
-                                        /></Zoom>
-                                        <Zoom><img
-                                            src={getMTIImage('MTIProgram.jpeg') as string}
-                                            alt="Programming and Workholding"
-                                            style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
-                                        /></Zoom>
-                                    </div>
-                                </div>
-                            ),
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', alignItems: 'center' }}>
+                    <video
+                        src={getMTIImage('MTIvid.mov') as string}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
+                    />
+                    <Zoom><img
+                        src={getMTIImage('MTISetup.jpeg') as string}
+                        alt="Machining Setup"
+                        style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
+                    /></Zoom>
+                    <Zoom><img
+                        src={getMTIImage('MTIProgress.jpeg') as string}
+                        alt="Machining Progress"
+                        style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
+                    /></Zoom>
+                    <Zoom><img
+                        src={getMTIImage('MTIProgram.jpeg') as string}
+                        alt="Programming and Workholding"
+                        style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
+                    /></Zoom>
+                </div>
+            </div>
+        ),
     },
 
-{//H13 HPT Anvil
-    id: '12',
+    {//H13 HPT Anvil
+        id: '12',
         title: 'H13 HPT Anvil',
-            description: 'Machined and heat treated an H13 anvil for High-Pressure Torsion research.',
-                tags: ['Machining', 'Inspection', 'Material Science'],
-                    imageUrl: getHPTImage('HPTFinal.jpeg') as string,
-                        slug: 'h13-hpt-anvil',
-                            content: (
-                                <div>
-                                    <div style={{ marginBottom: '2rem', fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--stone-300)' }}>
-                                        <p>
-                                            I machined an anvil used in the <a href="https://en.wikipedia.org/wiki/High-pressure_torsion" target="_blank" rel="noopener noreferrer" style={{ color: '#60a5fa', textDecoration: 'underline' }}>High-Pressure Torsion (HPT)</a> process, a method to refine grain structure with high pressure and shear force, yielding unique material properties. Manufacturing this part supported Material Science Department research.
-                                        </p>
-                                        <p style={{ marginTop: '1rem' }}>
-                                            I received the part file, communicated any DFM changes, selected tooling, created machinist drawings, and programmed conversationally on the machine (my first part done this way!).
-                                        </p>
-                                    </div>
+        description: 'Machined and heat treated an H13 anvil for High-Pressure Torsion research.',
+        tags: ['Machining', 'Inspection', 'Material Science'],
+        imageUrl: getHPTImage('HPTFinal.jpeg') as string,
+        slug: 'h13-hpt-anvil',
+        content: (
+            <div>
+                <div style={{ marginBottom: '2rem', fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--stone-300)' }}>
+                    <p>
+                        I machined an anvil used in the <a href="https://en.wikipedia.org/wiki/High-pressure_torsion" target="_blank" rel="noopener noreferrer" style={{ color: '#60a5fa', textDecoration: 'underline' }}>High-Pressure Torsion (HPT)</a> process, a method to refine grain structure with high pressure and shear force, yielding unique material properties. Manufacturing this part supported Material Science Department research.
+                    </p>
+                    <p style={{ marginTop: '1rem' }}>
+                        I received the part file, communicated any DFM changes, selected tooling, created machinist drawings, and programmed conversationally on the machine (my first part done this way!).
+                    </p>
+                </div>
 
-                                    <div style={{ display: 'flex', gap: '1.5rem', marginBottom: '2rem' }}>
-                                        <Zoom><img
-                                            src={getHPTImage('HPTAnvilProgress.jpeg') as string}
-                                            alt="HPT Anvil in progress"
-                                            style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', objectFit: 'cover' }}
-                                        /></Zoom>
-                                        <Zoom><img
-                                            src={getHPTImage('HPTAnvilInspect.jpeg') as string}
-                                            alt="HPT Anvil inspection"
-                                            style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', objectFit: 'cover' }}
-                                        /></Zoom>
-                                    </div>
+                <div style={{ display: 'flex', gap: '1.5rem', marginBottom: '2rem', width: '100%' }}>
+                    <div style={{ flex: 1 }}><Zoom><img
+                        src={getHPTImage('HPTAnvilProgress.jpeg') as string}
+                        alt="HPT Anvil in progress"
+                        style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', objectFit: 'cover' }}
+                    /></Zoom></div>
+                    <div style={{ flex: 1 }}><Zoom><img
+                        src={getHPTImage('HPTAnvilInspect.jpeg') as string}
+                        alt="HPT Anvil inspection"
+                        style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', objectFit: 'cover' }}
+                    /></Zoom></div>
+                </div>
 
-                                    <div style={{ marginBottom: '2rem', fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--stone-300)' }}>
-                                        <p>
-                                            I then heat treated the H13, following literature from ASM, ensuring understanding of each step, how it impacts the microstructure of the steel, which regions to hit and avoid on the TTT and CCT diagrams, and familiarizing myself with heat treat best practices. The heat treatment was successful and yielded a final hardness of 52 HRC.
-                                        </p>
-                                    </div>
+                <div style={{ marginBottom: '2rem', fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--stone-300)' }}>
+                    <p>
+                        I then heat treated the H13, following literature from ASM, ensuring understanding of each step, how it impacts the microstructure of the steel, which regions to hit and avoid on the TTT and CCT diagrams, and familiarizing myself with heat treat best practices. The heat treatment was successful and yielded a final hardness of 52 HRC.
+                    </p>
+                </div>
 
-                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-                                        <Zoom><img
-                                            src={getHPTImage('HPTHot.jpeg') as string}
-                                            alt="Hot anvil after heat treatment"
-                                            style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
-                                        /></Zoom>
-                                        <Zoom><img
-                                            src={getHPTImage('HPTFurnace.jpeg') as string}
-                                            alt="Furnace heat treatment"
-                                            style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
-                                        /></Zoom>
-                                        <Zoom><img
-                                            src={getHPTImage('HPTTTT.webp') as string}
-                                            alt="TTT diagram reference"
-                                            style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
-                                        /></Zoom>
-                                    </div>
-                                </div>
-                            ),
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                    <Zoom><img
+                        src={getHPTImage('HPTHot.jpeg') as string}
+                        alt="Hot anvil after heat treatment"
+                        style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
+                    /></Zoom>
+                    <Zoom><img
+                        src={getHPTImage('HPTFurnace.jpeg') as string}
+                        alt="Furnace heat treatment"
+                        style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
+                    /></Zoom>
+                    <Zoom><img
+                        src={getHPTImage('HPTTTT.webp') as string}
+                        alt="TTT diagram reference"
+                        style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
+                    /></Zoom>
+                </div>
+            </div>
+        ),
     },
 
-{//DIII-D Fusion Tokamak - Tungsten DiMES Samples 
-    id: '5',
+    {//DIII-D Fusion Tokamak - Tungsten DiMES Samples 
+        id: '5',
         title: 'Tungsten DiMES Samples for DIII-D Fusion Tokamak',
-            description: 'Manufacturing notoriously difficult tungsten samples for fusion plasma research.',
-                tags: ['Machining', 'Solidworks', 'NX', 'Additive', 'Material Science'],
-                    imageUrl: getDiMESImage('DiMESCover.jpg') as string,
-                        slug: 'diii-d-fusion-tokamak',
-                            content: (
-                                <div>
-                                    <div style={{ marginBottom: '2rem', fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--stone-300)' }}>
-                                        <p>
-                                            I had the pleasure of helping Aaliyah Zuniga with some of her research around Fusion Plasma Auxiliaries Characterization, specifically looking at additively manufactured tungsten as a material to be used in fusion reactors. I assisted with the manufacturing of the tungsten samples.
-                                        </p>
-                                    </div>
-                                    <ZigzagLayout items={[
-                                        {
-                                            id: 1,
-                                            title: 'Printing',
-                                            text: <p>Tungsten samples with specific grain orientations were printed via EBM-PBF. By controlling scan strategy, 001 columnar or 111 equiaxed grains were formed.</p>,
-                                            media: getDiMESImage('DiMESEBM.jpg') as string,
-                                        },
-                                        {
-                                            id: 2,
-                                            title: 'Sectioning and EDM',
-                                            text: <p>Using ESPRIT, I created wire EDM programs to section the printed samples, and then cut the XY cross-section of the final sample.</p>,
-                                            media: getDiMESImage('DiMESEDM.jpeg') as string,
-                                        },
-                                        {
-                                            id: 3,
-                                            title: 'Grinding',
-                                            text: <p>Using a Haas GmbH Multigrind grinding center, I developed fixturing, wrote CAM, and successfully ground the tungsten samples. CAM was written both on machine conversationally, and with NX CAM</p>,
-                                            media: getDiMESImage('DiMESGrinding.jpg') as string,
-                                        },
-                                        {
-                                            id: 4,
-                                            text: <p>I machined about a dozen of these samples, maintaining tolerances throughout.</p>,
-                                            media: getDiMESImage('DiMESInspec.jpg') as string,
-                                        }
-                                    ]} />
-                                </div>
-                            ),
+        description: 'Manufacturing notoriously difficult tungsten samples for fusion plasma research.',
+        tags: ['Machining', 'Solidworks', 'NX', 'Additive', 'Material Science'],
+        imageUrl: getDiMESImage('DiMESCover.jpg') as string,
+        slug: 'diii-d-fusion-tokamak',
+        content: (
+            <div>
+                <div style={{ marginBottom: '2rem', fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--stone-300)' }}>
+                    <p>
+                        I had the pleasure of helping Aaliyah Zuniga with some of her research around Fusion Plasma Auxiliaries Characterization, specifically looking at additively manufactured tungsten as a material to be used in fusion reactors. I assisted with the manufacturing of the tungsten samples.
+                    </p>
+                </div>
+                <ZigzagLayout items={[
+                    {
+                        id: 1,
+                        title: 'Printing',
+                        text: <p>Tungsten samples with specific grain orientations were printed via EBM-PBF. By controlling scan strategy, 001 columnar or 111 equiaxed grains were formed.</p>,
+                        media: getDiMESImage('DiMESEBM.jpg') as string,
+                    },
+                    {
+                        id: 2,
+                        title: 'Sectioning and EDM',
+                        text: <p>Using ESPRIT, I created wire EDM programs to section the printed samples, and then cut the XY cross-section of the final sample.</p>,
+                        media: getDiMESImage('DiMESEDM.jpeg') as string,
+                    },
+                    {
+                        id: 3,
+                        title: 'Grinding',
+                        text: <p>Using a Haas GmbH Multigrind grinding center, I developed fixturing, wrote CAM, and successfully ground the tungsten samples. CAM was written both on machine conversationally, and with NX CAM</p>,
+                        media: getDiMESImage('DiMESGrinding.jpg') as string,
+                    },
+                    {
+                        id: 4,
+                        text: <p>I machined about a dozen of these samples, maintaining tolerances throughout.</p>,
+                        media: getDiMESImage('DiMESInspec.jpg') as string,
+                    }
+                ]} />
+            </div>
+        ),
     },
 
     // {//DMG MORI - Additive R&D Internship
@@ -576,9 +582,97 @@ export const projects: Project[] = [
     //         React.createElement('p', null, '')
     //     ),
     // },
+
+    {//MAE208 Dynamics Final Project
+        id: '13',
+        title: 'MAE208 Dynamics Final Project',
+        description: 'Simulating the kinematics and power requirements of a 2-DOF robotic arm using MATLAB.',
+        tags: ['MATLAB', 'Robotics'],
+        imageUrl: getMAE208Image('cover.jpg') as string,
+        slug: 'mae208-dynamics-final-project',
+        content: (
+            <div>
+                <div style={{ marginBottom: '3rem' }}>
+                    <video
+                        src={getMAE208Image('MAE208Final.mov') as string}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', marginBottom: '2rem' }}
+                    />
+                </div>
+
+                <div style={{ marginBottom: '3rem', fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--stone-300)' }}>
+                    <h3 style={{ fontSize: '1.8rem', marginBottom: '1rem', color: 'var(--stone-100)' }}>Overview & Constraints</h3>
+                    <p>
+                        For my dynamics class final project, I explored the analysis of a 2 DOF robot arm.
+                        The objective was to calculate the kinematics, required motor torque, and power needed for the arm to lift
+                        a stationary box. To scope the project, I constrained the motion
+                        to a 2D Cartesian plane. I assumed massless, frictionless joints with zero backlash.
+                    </p>
+                </div>
+
+                <div style={{ marginBottom: '3rem', fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--stone-300)' }}>
+                    <h3 style={{ fontSize: '1.8rem', marginBottom: '1rem', color: 'var(--stone-100)' }}>The Math & Methodology</h3>
+
+                    <h4 style={{ fontSize: '1.3rem', marginTop: '2rem', marginBottom: '0.5rem', color: 'var(--stone-200)' }}>Trajectory Planning</h4>
+                    <p>
+                        I modeled the vertical path using a fifth-order polynomial equation.
+                        This allowed me to constrain the initial and final positions, velocities, and accelerations entirely to zero,
+                        resulting in a smooth acceleration profile.
+                    </p>
+                    <div style={{ backgroundColor: 'var(--stone-900)', padding: '1rem', borderRadius: '8px', overflowX: 'auto', margin: '1.5rem 0' }}>
+                        <BlockMath math="y(t) = y_0 + \frac{10(y_f - y_0)}{t_f^3}t^3 - \frac{15(y_f - y_0)}{t_f^4}t^4 + \frac{6(y_f - y_0)}{t_f^5}t^5" />
+                    </div>
+
+                    <h4 style={{ fontSize: '1.3rem', marginTop: '2rem', marginBottom: '0.5rem', color: 'var(--stone-200)' }}>Kinematics</h4>
+                    <p>
+                        Inverse kinematics were determined geometrically using the Pythagorean theorem and the Law of Cosines.
+                        To map the end-effector's linear velocities and accelerations directly to the rotational movements of the joints,
+                        I computed the Jacobian matrix (<InlineMath math="J" />) analytically in MATLAB.
+                        The <code>atan2</code> function was used to  track joint angles across varying Cartesian quadrants.
+                    </p>
+                    <div style={{ backgroundColor: 'var(--stone-900)', padding: '1rem', borderRadius: '8px', overflowX: 'auto', margin: '1.5rem 0' }}>
+                        <BlockMath math="\begin{bmatrix} \dot{x} \\ \dot{y} \end{bmatrix} = \begin{bmatrix} -L_1\sin\theta_1-L_2\sin(\theta_1+\theta_2) & -L_2\sin(\theta_1+\theta_2) \\ L_1\cos\theta_1+L_2\cos(\theta_1+\theta_2) & L_2\cos(\theta_1+\theta_2) \end{bmatrix} \begin{bmatrix} \dot{\theta}_1 \\ \dot{\theta}_2 \end{bmatrix}" />
+                    </div>
+
+                    <h4 style={{ fontSize: '1.3rem', marginTop: '2rem', marginBottom: '0.5rem', color: 'var(--stone-200)' }}>Dynamics</h4>
+                    <p>
+                        I used the parallel axis theorem to continuously adjust the  reference frame for the moment of inertia for each link,
+                        I modeled the sum of the gravity torque vectors and the effective inertia acceleration vectors to calculate the required torque at each joint.
+                    </p>
+                    <div style={{ backgroundColor: 'var(--stone-900)', padding: '1rem', borderRadius: '8px', overflowX: 'auto', margin: '1.5rem 0' }}>
+                        <BlockMath math="\tau_i = \tau_{g,i} + I_{\text{eff},i}\ddot{\theta}_i" />
+                    </div>
+                </div>
+
+                <div style={{ marginBottom: '3rem', fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--stone-300)' }}>
+                    <h3 style={{ fontSize: '1.8rem', marginBottom: '1rem', color: 'var(--stone-100)' }}>Simulation Results</h3>
+                    <p style={{ marginTop: '1rem' }}>
+                        By integrating the instantaneous power distributions over the 5-second travel time using <code>trapz</code> integration in MATLAB,
+                        the total mechanical energy expended by the system was calculated.
+                    </p>
+                </div>
+
+                <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+                    <a
+                        href="https://github.com/jackbfowler/jackbfowler.github.com/blob/main/src/assets/Projects/MAE208Final/robotarm.m"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ color: 'var(--stone-400)', fontSize: '0.95rem', textDecoration: 'underline', transition: 'color 0.2s ease' }}
+                        onMouseOver={(e) => e.currentTarget.style.color = 'var(--stone-200)'}
+                        onMouseOut={(e) => e.currentTarget.style.color = 'var(--stone-400)'}
+                    >
+                        View MATLAB Source Code
+                    </a>
+                </div>
+            </div>
+        ),
+    },
 ];
 
-// Aquapack, sandvik, E101 final, dynamics robot arm, 
+// Aquapack, sandvik, E101 final,
 
 export const getAllTags = (): string[] => {
     const tags = new Set<string>();
