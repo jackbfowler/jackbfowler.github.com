@@ -1,4 +1,7 @@
 import React from 'react';
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
+
 import ZigzagLayout from '../components/ZigzagLayout';
 
 // Glob import for SusAnalysis images
@@ -24,6 +27,10 @@ const getFormlabsImage = (name: string) => formlabsImages[`../assets/Projects/Fo
 // Glob import for 316SS Furnace Adapter images
 const mtiImages = import.meta.glob('../assets/Projects/316FurnaceAdapter/*', { eager: true, as: 'url' });
 const getMTIImage = (name: string) => mtiImages[`../assets/Projects/316FurnaceAdapter/${name}`];
+
+// Glob import for 2025 Baja Steering images
+const steerImages = import.meta.glob('../assets/Projects/2025Steer/*', { eager: true, as: 'url' });
+const get2025SteerImage = (name: string) => steerImages[`../assets/Projects/2025Steer/${name}`];
 
 // Glob import for HPT Anvil images
 const hptImages = import.meta.glob('../assets/Projects/HPTAnvil/*', { eager: true, as: 'url' });
@@ -177,11 +184,11 @@ export const projects: Project[] = [
                     The team is making great use of this data to inform our design.
                 </p>
                 <div style={{ marginTop: '4rem', display: 'flex', justifyContent: 'center' }}>
-                    <img
+                    <Zoom><img
                         src={getWFTImage('WFTGroup.jpg') as string}
                         alt="WFT Group"
                         style={{ width: '100%', maxWidth: '800px', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
-                    />
+                    /></Zoom>
                 </div>
 
             </div>
@@ -222,11 +229,11 @@ export const projects: Project[] = [
                 </p>
 
                 <div style={{ marginTop: '2rem', display: 'flex', justifyContent: 'center' }}>
-                    <img
+                    <Zoom><img
                         src={getFormlabsImage('FormlabsRedSox.jpg') as string}
                         alt="Formlabs Red Sox Game"
                         style={{ width: '100%', maxWidth: '800px', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
-                    />
+                    /></Zoom>
                 </div>
             </div>
         ),
@@ -259,8 +266,8 @@ export const projects: Project[] = [
                         text: <p>I wrote the CAM in Fusion360, with accurate workholding and machine simulation.</p>,
                         media: (
                             <div style={{ display: 'flex', gap: '1rem' }}>
-                                <img src={getUprightImage('UprightCAM1.png') as string} alt="Fusion360 CAM 1" style={{ width: 'calc(50% - 0.5rem)', borderRadius: '8px', objectFit: 'cover' }} />
-                                <img src={getUprightImage('UprightCAM2.png') as string} alt="Fusion360 CAM 2" style={{ width: 'calc(50% - 0.5rem)', borderRadius: '8px', objectFit: 'cover' }} />
+                                <Zoom><img src={getUprightImage('UprightCAM1.png') as string} alt="Fusion360 CAM 1" style={{ width: '100%', borderRadius: '8px', objectFit: 'cover' }} /></Zoom>
+                                <Zoom><img src={getUprightImage('UprightCAM2.png') as string} alt="Fusion360 CAM 2" style={{ width: '100%', borderRadius: '8px', objectFit: 'cover' }} /></Zoom>
                             </div>
                         ),
                     },
@@ -276,8 +283,8 @@ export const projects: Project[] = [
                         text: <p>Inspection was then done traditionally on a surface plate, and also with a Creaform HandySCAN Black. It was especially interesting comparing the 10x tighter tolerances held by these versus our previous welded upright.</p>,
                         media: (
                             <div style={{ display: 'flex', gap: '1rem' }}>
-                                <img src={getUprightImage('UprightInspectCNC.png') as string} alt="Inspection CNC" style={{ width: 'calc(50% - 0.5rem)', borderRadius: '8px', objectFit: 'cover' }} />
-                                <img src={getUprightImage('UprightInspectWeld.png') as string} alt="Inspection Weld" style={{ width: 'calc(50% - 0.5rem)', borderRadius: '8px', objectFit: 'cover' }} />
+                                <Zoom><img src={getUprightImage('UprightInspectCNC.png') as string} alt="Inspection CNC" style={{ width: '100%', borderRadius: '8px', objectFit: 'cover' }} /></Zoom>
+                                <Zoom><img src={getUprightImage('UprightInspectWeld.png') as string} alt="Inspection Weld" style={{ width: '100%', borderRadius: '8px', objectFit: 'cover' }} /></Zoom>
                             </div>
                         ),
                     }
@@ -286,169 +293,235 @@ export const projects: Project[] = [
         ),
     },
 
-    // {//2025 Baja SAE Steering System
-    //     id: '8',
-    //     title: '2025 Baja SAE Steering System',
-    //     description: '',
-    //     tags: ['Baja SAE', 'Solidworks', 'ANSYS', 'Machining'],
-    //     imageUrl: 'https://via.placeholder.com/400',
-    //     slug: '2025-baja-sae-steering-system',
-    //     content: React.createElement('div', null,
-    //         React.createElement('h2', null, ''),
-    //         React.createElement('p', null, '')
-    //     ),
-    // },
-
-    {//316SS Furnace Exhaust Adapter
-        id: '4',
-        title: '316SS Furnace Exhaust Adapter',
-        description: 'Consulted and fully machined 316SS furnace adapters for a Material Science lab.',
-        tags: ['Machining', 'Solidworks', 'Inspection'],
-        imageUrl: getMTIImage('MTIFinal.jpeg') as string,
-        slug: '316ss-furnace-exhaust-adapter',
+    {//2025 Baja SAE Steering System
+        id: '8',
+        title: '2025 Baja SAE Steering System',
+        description: 'Updated the steering system design for the 2025 car.',
+        tags: ['Baja SAE', 'Solidworks', 'ANSYS', 'Machining'],
+        imageUrl: get2025SteerImage('2025Steer.png') as string,
+        slug: '2025-baja-sae-steering-system',
         content: (
             <div>
                 <div style={{ marginBottom: '2rem', fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--stone-300)' }}>
                     <p>
-                        I consulted on and fully machined three 316SS furnace adapters for a Material Science lab.
+                        For our 2025 car, I was tasked with updating the design of our steering system. I set a few goals based on the performance I observed on the 2024 car:
                     </p>
-                    <p style={{ marginTop: '1rem' }}>
-                        I built skills in DFM: providing design guidance around specific machine capabilities and tooling selection, ensuring sufficient and effective workholding, and correctly communicating tolerances and critical features.
-                    </p>
+                    <ul style={{ listStyleType: 'disc', paddingLeft: '20px', marginTop: '1rem', marginBottom: '1.5rem', lineHeight: '1.6', textAlign: 'left' }}>
+                        <li>Consolidate components to simplify manufacturing and assembly</li>
+                        <li>Reduce mass to track with mass budget for system</li>
+                        <li>Reduce backlash to negligible levels.</li>
+                    </ul>
                 </div>
 
-                <p style={{ marginTop: '1rem', marginBottom: '2rem', fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--stone-300)' }}>
-                    The part was programmed conversationally on the Matrix 2, workheld by bored out jaws and machined in two setups. Inspection was done traditionally with a height gauge and surface plate.
-                </p>
-
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', alignItems: 'center' }}>
-                    <video
-                        src={getMTIImage('MTIvid.mov') as string}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
-                    />
-                    <img
-                        src={getMTIImage('MTISetup.jpeg') as string}
-                        alt="Machining Setup"
-                        style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
-                    />
-                    <img
-                        src={getMTIImage('MTIProgress.jpeg') as string}
-                        alt="Machining Progress"
-                        style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
-                    />
-                    <img
-                        src={getMTIImage('MTIProgram.jpeg') as string}
-                        alt="Programming and Workholding"
-                        style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
-                    />
-                </div>
-            </div>
-        ),
-    },
-
-    {//H13 HPT Anvil
-        id: '12',
-        title: 'H13 HPT Anvil',
-        description: 'Machined and heat treated an H13 anvil for High-Pressure Torsion research.',
-        tags: ['Machining', 'Inspection', 'Material Science'],
-        imageUrl: getHPTImage('HPTFinal.jpeg') as string,
-        slug: 'h13-hpt-anvil',
-        content: (
-            <div>
-                <div style={{ marginBottom: '2rem', fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--stone-300)' }}>
-                    <p>
-                        I machined an anvil used in the <a href="https://en.wikipedia.org/wiki/High-pressure_torsion" target="_blank" rel="noopener noreferrer" style={{ color: '#60a5fa', textDecoration: 'underline' }}>High-Pressure Torsion (HPT)</a> process, a method to refine grain structure with high pressure and shear force, yielding unique material properties. Manufacturing this part supported Material Science Department research.
-                    </p>
-                    <p style={{ marginTop: '1rem' }}>
-                        I received the part file, communicated any DFM changes, selected tooling, created machinist drawings, and programmed conversationally on the machine (my first part done this way!).
-                    </p>
-                </div>
-
-                <div style={{ display: 'flex', gap: '1.5rem', marginBottom: '2rem' }}>
-                    <img
-                        src={getHPTImage('HPTAnvilProgress.jpeg') as string}
-                        alt="HPT Anvil in progress"
-                        style={{ width: '50%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', objectFit: 'cover' }}
-                    />
-                    <img
-                        src={getHPTImage('HPTAnvilInspect.jpeg') as string}
-                        alt="HPT Anvil inspection"
-                        style={{ width: '50%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', objectFit: 'cover' }}
-                    />
-                </div>
-
-                <div style={{ marginBottom: '2rem', fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--stone-300)' }}>
-                    <p>
-                        I then heat treated the H13, following literature from ASM, ensuring understanding of each step, how it impacts the microstructure of the steel, which regions to hit and avoid on the TTT and CCT diagrams, and familiarizing myself with heat treat best practices. The heat treatment was successful and yielded a final hardness of 52 HRC.
-                    </p>
-                </div>
-
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-                    <img
-                        src={getHPTImage('HPTHot.jpeg') as string}
-                        alt="Hot anvil after heat treatment"
-                        style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
-                    />
-                    <img
-                        src={getHPTImage('HPTFurnace.jpeg') as string}
-                        alt="Furnace heat treatment"
-                        style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
-                    />
-                    <img
-                        src={getHPTImage('HPTTTT.webp') as string}
-                        alt="TTT diagram reference"
-                        style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
-                    />
-                </div>
-            </div>
-        ),
-    },
-
-    {//DIII-D Fusion Tokamak - Tungsten DiMES Samples 
-        id: '5',
-        title: 'Tungsten DiMES Samples for DIII-D Fusion Tokamak',
-        description: 'Manufacturing notoriously difficult tungsten samples for fusion plasma research.',
-        tags: ['Machining', 'Solidworks', 'NX', 'Additive', 'Material Science'],
-        imageUrl: getDiMESImage('DiMESCover.jpg') as string,
-        slug: 'diii-d-fusion-tokamak',
-        content: (
-            <div>
-                <div style={{ marginBottom: '2rem', fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--stone-300)' }}>
-                    <p>
-                        I had the pleasure of helping Aaliyah Zuniga with some of her research around Fusion Plasma Auxiliaries Characterization, specifically looking at additively manufactured tungsten as a material to be used in fusion reactors. I assisted with the manufacturing of the tungsten samples.
-                    </p>
-                </div>
                 <ZigzagLayout items={[
                     {
                         id: 1,
-                        title: 'Printing',
-                        text: <p>Tungsten samples with specific grain orientations were printed via EBM-PBF. By controlling scan strategy, 001 columnar or 111 equiaxed grains were formed.</p>,
-                        media: getDiMESImage('DiMESEBM.jpg') as string,
+                        text: <p>I began by reworking the design from previous years, building out a parametric SolidWorks model based on a master sketch framework, following good modeling, PDM, and organizational standards.</p>,
+                        media: get2025SteerImage('SteerSW.jpg') as string,
                     },
                     {
                         id: 2,
-                        title: 'Sectioning and EDM',
-                        text: <p>Using ESPRIT, I created wire EDM programs to section the printed samples, and then cut the XY cross-section of the final sample.</p>,
-                        media: getDiMESImage('DiMESEDM.jpeg') as string,
+                        text: (
+                            <p>
+                                I first focused on consolidating components. We had issues last year with our welded steering rack warping, being difficult to assemble, and weighing too much. I refactored this part to be Wire EDM'd from a single piece of 8620 Steel round bar. I also integrated our steering stops into the tie rod clevises, and simplified the U-joint packaging with better component selection, and some custom splines.
+                                <br />
+                                <br />
+                                <span style={{ fontStyle: 'italic', fontSize: '0.9rem', color: 'var(--stone-400)' }}>2024 (left) vs 2025 (right)</span>
+                            </p>
+                        ),
+                        media: (
+                            <div style={{ display: 'flex', gap: '1rem' }}>
+                                <Zoom><img src={get2025SteerImage('2024Steer.png') as string} alt="2024 Steer Assembly" style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', objectFit: 'cover' }} /></Zoom>
+                                <Zoom><img src={get2025SteerImage('2025Steer.png') as string} alt="2025 Steer Assembly" style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', objectFit: 'cover' }} /></Zoom>
+                            </div>
+                        ),
                     },
                     {
                         id: 3,
-                        title: 'Grinding',
-                        text: <p>Using a Haas GmbH Multigrind grinding center, I developed fixturing, wrote CAM, and successfully ground the tungsten samples. CAM was written both on machine conversationally, and with NX CAM</p>,
-                        media: getDiMESImage('DiMESGrinding.jpg') as string,
+                        text: <p>Then, static FEA simulation was done, with some hand calculations around beam bending to validate, using data collected off of strain gauges I applied to the tie rod. I worked with our electronics team to integrate a good amplifier, and record the data to our DAQ.</p>,
+                        media: (
+                            <div style={{ display: 'flex', gap: '1rem' }}>
+                                <Zoom><img src={get2025SteerImage('straintierod.png') as string} alt="Strain Gauge" style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', objectFit: 'cover' }} /></Zoom>
+                                <Zoom><img src={get2025SteerImage('steerFEA.jpg') as string} alt="Steering FEA" style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', objectFit: 'cover' }} /></Zoom>
+                            </div>
+                        ),
                     },
                     {
                         id: 4,
-                        text: <p>I machined about a dozen of these samples, maintaining tolerances throughout.</p>,
-                        media: getDiMESImage('DiMESInspec.jpg') as string,
+                        text: <p>I chose to use a CFRP tube for the column, bonded using Loctite E-120HP to aluminum components with a chromium oxide coating. I researched aerospace standards, and developed the bonding SOP: surface prep, bond line glass bead separators, application methods, etc. To validate all this work, we destructively tested the bond, and saw correlation to my analysis.</p>,
+                        media: get2025SteerImage('Bondtesting.png') as string,
+                    },
+                    {
+                        id: 5,
+                        text: <p>Next, I machined all the components needed for the system. I used a 3-axis CNC, wire EDM, heat treatment furnace, and manual mill to make all the components.</p>,
+                        media: get2025SteerImage('steeredm.MOV') as string,
                     }
                 ]} />
-            </div>
+
+                <div style={{ marginTop: '3rem', marginBottom: '2rem', fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--stone-300)' }}>
+                    <p>
+                        All of the components were assembled, welded, and bonded together, resulting in a system that worked through all of testing and 2 full competitions.
+                    </p>
+                </div>
+
+                <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center' }}>
+                    <Zoom><img src={get2025SteerImage('steerfinalbot.png') as string} alt="Final Steering Assembly Bottom" style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', objectFit: 'cover' }} /></Zoom>
+                    <Zoom><img src={get2025SteerImage('steerfinaltop.png') as string} alt="Final Steering Assembly Top" style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', objectFit: 'cover' }} /></Zoom>
+                </div>
+            </div >
         ),
+    },
+
+{//316SS Furnace Exhaust Adapter
+    id: '4',
+        title: '316SS Furnace Exhaust Adapter',
+            description: 'Consulted and fully machined 316SS furnace adapters for a Material Science lab.',
+                tags: ['Machining', 'Solidworks', 'Inspection'],
+                    imageUrl: getMTIImage('MTIFinal.jpeg') as string,
+                        slug: '316ss-furnace-exhaust-adapter',
+                            content: (
+                                <div>
+                                    <div style={{ marginBottom: '2rem', fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--stone-300)' }}>
+                                        <p>
+                                            I consulted on and fully machined three 316SS furnace adapters for a Material Science lab.
+                                        </p>
+                                        <p style={{ marginTop: '1rem' }}>
+                                            I built skills in DFM: providing design guidance around specific machine capabilities and tooling selection, ensuring sufficient and effective workholding, and correctly communicating tolerances and critical features.
+                                        </p>
+                                    </div>
+
+                                    <p style={{ marginTop: '1rem', marginBottom: '2rem', fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--stone-300)' }}>
+                                        The part was programmed conversationally on the Matrix 2, workheld by bored out jaws and machined in two setups. Inspection was done traditionally with a height gauge and surface plate.
+                                    </p>
+
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', alignItems: 'center' }}>
+                                        <video
+                                            src={getMTIImage('MTIvid.mov') as string}
+                                            autoPlay
+                                            loop
+                                            muted
+                                            playsInline
+                                            style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
+                                        />
+                                        <Zoom><img
+                                            src={getMTIImage('MTISetup.jpeg') as string}
+                                            alt="Machining Setup"
+                                            style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
+                                        /></Zoom>
+                                        <Zoom><img
+                                            src={getMTIImage('MTIProgress.jpeg') as string}
+                                            alt="Machining Progress"
+                                            style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
+                                        /></Zoom>
+                                        <Zoom><img
+                                            src={getMTIImage('MTIProgram.jpeg') as string}
+                                            alt="Programming and Workholding"
+                                            style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
+                                        /></Zoom>
+                                    </div>
+                                </div>
+                            ),
+    },
+
+{//H13 HPT Anvil
+    id: '12',
+        title: 'H13 HPT Anvil',
+            description: 'Machined and heat treated an H13 anvil for High-Pressure Torsion research.',
+                tags: ['Machining', 'Inspection', 'Material Science'],
+                    imageUrl: getHPTImage('HPTFinal.jpeg') as string,
+                        slug: 'h13-hpt-anvil',
+                            content: (
+                                <div>
+                                    <div style={{ marginBottom: '2rem', fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--stone-300)' }}>
+                                        <p>
+                                            I machined an anvil used in the <a href="https://en.wikipedia.org/wiki/High-pressure_torsion" target="_blank" rel="noopener noreferrer" style={{ color: '#60a5fa', textDecoration: 'underline' }}>High-Pressure Torsion (HPT)</a> process, a method to refine grain structure with high pressure and shear force, yielding unique material properties. Manufacturing this part supported Material Science Department research.
+                                        </p>
+                                        <p style={{ marginTop: '1rem' }}>
+                                            I received the part file, communicated any DFM changes, selected tooling, created machinist drawings, and programmed conversationally on the machine (my first part done this way!).
+                                        </p>
+                                    </div>
+
+                                    <div style={{ display: 'flex', gap: '1.5rem', marginBottom: '2rem' }}>
+                                        <Zoom><img
+                                            src={getHPTImage('HPTAnvilProgress.jpeg') as string}
+                                            alt="HPT Anvil in progress"
+                                            style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', objectFit: 'cover' }}
+                                        /></Zoom>
+                                        <Zoom><img
+                                            src={getHPTImage('HPTAnvilInspect.jpeg') as string}
+                                            alt="HPT Anvil inspection"
+                                            style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', objectFit: 'cover' }}
+                                        /></Zoom>
+                                    </div>
+
+                                    <div style={{ marginBottom: '2rem', fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--stone-300)' }}>
+                                        <p>
+                                            I then heat treated the H13, following literature from ASM, ensuring understanding of each step, how it impacts the microstructure of the steel, which regions to hit and avoid on the TTT and CCT diagrams, and familiarizing myself with heat treat best practices. The heat treatment was successful and yielded a final hardness of 52 HRC.
+                                        </p>
+                                    </div>
+
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                                        <Zoom><img
+                                            src={getHPTImage('HPTHot.jpeg') as string}
+                                            alt="Hot anvil after heat treatment"
+                                            style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
+                                        /></Zoom>
+                                        <Zoom><img
+                                            src={getHPTImage('HPTFurnace.jpeg') as string}
+                                            alt="Furnace heat treatment"
+                                            style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
+                                        /></Zoom>
+                                        <Zoom><img
+                                            src={getHPTImage('HPTTTT.webp') as string}
+                                            alt="TTT diagram reference"
+                                            style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
+                                        /></Zoom>
+                                    </div>
+                                </div>
+                            ),
+    },
+
+{//DIII-D Fusion Tokamak - Tungsten DiMES Samples 
+    id: '5',
+        title: 'Tungsten DiMES Samples for DIII-D Fusion Tokamak',
+            description: 'Manufacturing notoriously difficult tungsten samples for fusion plasma research.',
+                tags: ['Machining', 'Solidworks', 'NX', 'Additive', 'Material Science'],
+                    imageUrl: getDiMESImage('DiMESCover.jpg') as string,
+                        slug: 'diii-d-fusion-tokamak',
+                            content: (
+                                <div>
+                                    <div style={{ marginBottom: '2rem', fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--stone-300)' }}>
+                                        <p>
+                                            I had the pleasure of helping Aaliyah Zuniga with some of her research around Fusion Plasma Auxiliaries Characterization, specifically looking at additively manufactured tungsten as a material to be used in fusion reactors. I assisted with the manufacturing of the tungsten samples.
+                                        </p>
+                                    </div>
+                                    <ZigzagLayout items={[
+                                        {
+                                            id: 1,
+                                            title: 'Printing',
+                                            text: <p>Tungsten samples with specific grain orientations were printed via EBM-PBF. By controlling scan strategy, 001 columnar or 111 equiaxed grains were formed.</p>,
+                                            media: getDiMESImage('DiMESEBM.jpg') as string,
+                                        },
+                                        {
+                                            id: 2,
+                                            title: 'Sectioning and EDM',
+                                            text: <p>Using ESPRIT, I created wire EDM programs to section the printed samples, and then cut the XY cross-section of the final sample.</p>,
+                                            media: getDiMESImage('DiMESEDM.jpeg') as string,
+                                        },
+                                        {
+                                            id: 3,
+                                            title: 'Grinding',
+                                            text: <p>Using a Haas GmbH Multigrind grinding center, I developed fixturing, wrote CAM, and successfully ground the tungsten samples. CAM was written both on machine conversationally, and with NX CAM</p>,
+                                            media: getDiMESImage('DiMESGrinding.jpg') as string,
+                                        },
+                                        {
+                                            id: 4,
+                                            text: <p>I machined about a dozen of these samples, maintaining tolerances throughout.</p>,
+                                            media: getDiMESImage('DiMESInspec.jpg') as string,
+                                        }
+                                    ]} />
+                                </div>
+                            ),
     },
 
     // {//DMG MORI - Additive R&D Internship

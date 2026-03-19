@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { projects, getAllTags } from '../data/projects';
 import ProjectCard from '../components/ProjectCard';
 import ProjectFilter from '../components/ProjectFilter';
+import { Helmet } from 'react-helmet-async';
 
 const Projects: React.FC = () => {
     const [selectedTag, setSelectedTag] = useState<string | null>(null);
@@ -14,6 +15,10 @@ const Projects: React.FC = () => {
 
     return (
         <div className="container section" style={{ paddingTop: '100px' }}>
+            <Helmet>
+                <title>Projects | Jack Fowler</title>
+                <meta name="description" content="Explore my engineering projects spanning Baja SAE, manufacturing, product design, and additive manufacturing." />
+            </Helmet>
             <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
                 <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>Projects</h2>
             </div>

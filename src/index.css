@@ -85,3 +85,16 @@ h3 {
 .section {
   padding: 4rem 0;
 }
+
+/* Fix react-medium-image-zoom wrapper sizing */
+[data-rmiz-wrap="visible"],
+[data-rmiz-wrap="hidden"] {
+  display: flex !important;
+  width: 100% !important;
+  flex: 1; /* Inherit flex widths automatically when in side-by-side div boxes */
+}
+
+[data-rmiz-wrap="visible"] img,
+[data-rmiz-wrap="hidden"] img {
+  width: 100% !important;
+}

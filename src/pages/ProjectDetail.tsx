@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import { projects } from '../data/projects';
+import { Helmet } from 'react-helmet-async';
 
 const ProjectDetail: React.FC = () => {
     const { slug } = useParams<{ slug: string }>();
@@ -12,6 +13,10 @@ const ProjectDetail: React.FC = () => {
 
     return (
         <div className="container section" style={{ paddingTop: '100px' }}>
+            <Helmet>
+                <title>{`${project.title} | Jack Fowler`}</title>
+                <meta name="description" content={project.description || `Read about my work on ${project.title}.`} />
+            </Helmet>
             <Link to="/projects" style={{
                 display: 'inline-flex',
                 alignItems: 'center',

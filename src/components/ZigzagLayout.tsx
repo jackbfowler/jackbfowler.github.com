@@ -1,4 +1,6 @@
 import React from 'react';
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
 import './ZigzagLayout.css';
 
 interface ZigzagItem {
@@ -40,7 +42,9 @@ const ZigzagLayout: React.FC<ZigzagLayoutProps> = ({ items }) => {
                                     style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
                                 />
                             ) : (
-                                <img src={item.media} alt={item.title || 'Project media'} />
+                                <Zoom>
+                                    <img src={item.media} alt={item.title || 'Project media'} />
+                                </Zoom>
                             )
                         ) : item.media ? (
                             item.media

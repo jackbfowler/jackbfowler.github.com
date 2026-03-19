@@ -1,0 +1,100 @@
+/* Cassette Layout */
+.project-cassette-section {
+    position: relative;
+    width: 100%;
+    margin-bottom: 2rem;
+    /* Add spacing below it so it doesn't touch the Machine Cassette */
+}
+
+.project-cassette-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--stone-50);
+    text-align: left;
+    padding-left: 0.5rem;
+}
+
+.project-cassette-wrapper {
+    position: relative;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Scroll Container */
+.project-cassette-scroll {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding: 1rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.project-cassette-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+/* Wrapper for ProjectCard to control size in carousel */
+.project-cassette-slide {
+    position: relative;
+    flex: 0 0 auto;
+    width: 80%;
+    /* Reduced 25% from original 80% */
+    scroll-snap-align: center;
+    /* Other card styles like overflow, border-radius, hover fx are handled by ProjectCard.css */
+}
+
+/* Hide tags specifically when cards are rendered in the cassette */
+.project-cassette-slide .project-card-tags {
+    display: none;
+}
+
+/* Halve the font size for project titles specifically in the cassette */
+.project-cassette-slide .project-card-title {
+    font-size: 1rem;
+    /* Half of 1.5rem */
+    margin-bottom: 0;
+    /* Adjust margin since it's smaller */
+}
+
+/* Blur/Fade Edges */
+.project-cassette-edge {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 4rem;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.project-cassette-edge-left {
+    left: 0;
+    background: linear-gradient(to right, var(--bg-primary), transparent);
+    backdrop-filter: blur(2px);
+    -webkit-mask-image: linear-gradient(to right, black, transparent);
+    mask-image: linear-gradient(to right, black, transparent);
+}
+
+.project-cassette-edge-right {
+    right: 0;
+    background: linear-gradient(to left, var(--bg-primary), transparent);
+    backdrop-filter: blur(2px);
+    -webkit-mask-image: linear-gradient(to left, black, transparent);
+    mask-image: linear-gradient(to left, black, transparent);
+}
+
+/* Desktop Responsiveness */
+@media (min-width: 768px) {
+    .project-cassette-slide {
+        width: 50%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .project-cassette-slide {
+        width: 40%;
+    }
+}

@@ -3,6 +3,8 @@ import Timeline from '../components/Timeline';
 import HomeBackground from '../assets/HomeBackground.png';
 import FlipText from '../components/FlipText';
 import MachineCassette from '../components/MachineCassette';
+import ProjectCassette from '../components/ProjectCassette';
+import { Helmet } from 'react-helmet-async';
 
 const Home = () => {
     const photoConfig = {
@@ -13,6 +15,10 @@ const Home = () => {
 
     return (
         <div className="home-page">
+            <Helmet>
+                <title>Jack Fowler | Portfolio</title>
+                <meta name="description" content="Portfolio of Jack Fowler. Proven student experience in design, prototyping, manufacturing, and analysis." />
+            </Helmet>
             <section className="hero section" style={{
                 backgroundImage: `url(${HomeBackground})`,
                 backgroundSize: 'cover', // Ensures text is always contained
@@ -36,7 +42,7 @@ const Home = () => {
                     <h2 style={styles.subtitle}>Mechanical Engineering Student @ N.C. State</h2>
                     <p style={styles.summary}>
                         Proven student experience in design, prototyping, manufacturing, and
-                        analysis for <FlipText words={["automotive.", "metal additive.", "polymer additive.", "robotics.", "5-axis machining.", "3-axis machining.", "hybrid machining.", "mill-turn machining.", "sheet metal.", "consumer products.", "machine tools."]} color="var(--stone-50)" />
+                        analysis for <FlipText words={["automotive.", "metal additive.", "polymer additive.", "electromechanical systems", "robotics.", "5-axis machining.", "3-axis machining.", "hybrid machining.", "mill-turn machining.", "sheet metal.", "consumer products.", "machine tools."]} color="var(--stone-50)" />
                     </p>
                     {/* View My Work button removed */}
                 </div>
@@ -48,6 +54,7 @@ const Home = () => {
                         <Timeline />
                     </div>
                     <div className="machines-section">
+                        <ProjectCassette />
                         <MachineCassette />
                     </div>
                 </div>
