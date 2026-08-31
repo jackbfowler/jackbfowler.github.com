@@ -7,7 +7,7 @@ interface ProcessedExperience extends Experience {
 }
 
 const Timeline = () => {
-    const TOTAL_SEMESTERS = 7; // User-defined total semesters
+    const TOTAL_SEMESTERS = 10; // User-defined total semesters
     const SEMESTER_HEIGHT = 70; // px per semester
     const TRACK_WIDTH = 20; // px
     const MARKER_WIDTH = 80; // Width for left-side markers
@@ -109,6 +109,7 @@ const Timeline = () => {
 
                 {/* Side Labels - Moved to Left */}
                 {renderMarker("Present", `${totalSemesters * SEMESTER_HEIGHT + 10}px`)}
+                {renderMarker("Summer 2026", `${8 * SEMESTER_HEIGHT - 2.5}px`)}
                 {renderMarker("Summer 2025", `${5 * SEMESTER_HEIGHT - 2.5}px`)}
                 {renderMarker("Summer 2024", `${2 * SEMESTER_HEIGHT - 2.5}px`)}
                 {renderMarker("High School", `${-1.2 * SEMESTER_HEIGHT - 75}px`)}

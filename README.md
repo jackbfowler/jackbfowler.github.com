@@ -1,16 +1,69 @@
-# React + Vite
+# Jack Fowler — Portfolio Site
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio / résumé website for Jack Fowler, built with **React 18 + TypeScript**
+and **Vite**, deployed to GitHub Pages at **https://jackfowler.me** (custom domain).
 
-Currently, two official plugins are available:
+## Quickstart
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+# 1. Install dependencies
+npm install
 
-## React Compiler
+# 2. Start the dev server (localhost)
+npm run dev
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Then open **http://localhost:5173** in your browser. Vite serves with hot module
+replacement (HMR) — edits to `src/` show up instantly.
 
-## Expanding the ESLint configuration
+## Useful commands
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+| Command             | What it does                                              |
+| ------------------- | --------------------------------------------------------- |
+| `npm run dev`       | Start dev server → http://localhost:5173                  |
+| `npm run build`     | Production build to `dist/` (also generates `sitemap.xml`) |
+| `npm run preview`   | Serve the built `dist/` locally to verify production output |
+| `npm run lint`      | ESLint check over `src/` (must pass with zero warnings)   |
+| `npm run deploy`    | Build + publish `dist/` to the `gh-pages` branch          |
+
+## Tech stack
+
+- **React 18** + **TypeScript** (strict) — `src/`
+- **Vite 4** — dev server, build, bundling
+- **React Router v6** — routes: `/`, `/projects`, `/projects/:slug`, `/resume`
+- **react-helmet-async** — per-page SEO/head tags
+- **react-katex / katex** — math rendering in project write-ups
+- **react-medium-image-zoom** — zoomable project images
+- **vite-plugin-sitemap** — sitemap generation (hostname `jackfowler.me`)
+- **gh-pages** — deployment to GitHub Pages
+
+## Project structure
+
+```
+src/
+  data/        projects.tsx · experience.ts · machines.ts  (content source of truth)
+  pages/       Home · Projects · ProjectDetail
+  components/  Navbar, Footer, ProjectCard, MachineCassette, Timeline, ...
+  assets/      images & project media (src/assets/Projects/<Folder>/)
+  workers/     titleTimer.ts (tab-title animation, Vite ?worker import)
+public/        CNAME, 404.html (SPA fallback), favicon, robots.txt
+```
+
+See **[agents.md](./agents.md)** for full agentic context, conventions, and gotchas
+when working on this repo.
+
+## Deployment
+
+Deployment is manual and goes to GitHub Pages:
+
+```bash
+npm run deploy   # builds dist/ and pushes it to the gh-pages branch
+```
+
+- The working branch is `main`; `dist/` and `node_modules/` are gitignored.
+- `public/CNAME` keeps the custom domain `jackfowler.me` intact.
+- `public/404.html` is the client-side routing fallback required by GitHub Pages.
+
+## Requirements
+
+- Node.js 18+ (developed on Node 22) and npm 9+.

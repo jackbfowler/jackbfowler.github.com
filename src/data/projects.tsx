@@ -42,6 +42,10 @@ const getHPTImage = (name: string) => hptImages[`../assets/Projects/HPTAnvil/${n
 const mae208Images = import.meta.glob('../assets/Projects/MAE208Final/*', { eager: true, as: 'url' });
 const getMAE208Image = (name: string) => mae208Images[`../assets/Projects/MAE208Final/${name}`];
 
+// Glob import for MAE535 assets
+const mae535Images = import.meta.glob('../assets/Projects/MAE535/*', { eager: true, as: 'url' });
+const getMAE535Image = (name: string) => mae535Images[`../assets/Projects/MAE535/${name}`];
+
 export interface Project {
     id: string;
     title: string;
@@ -375,6 +379,38 @@ export const projects: Project[] = [
                     <div style={{ flex: 1 }}><Zoom><img src={get2025SteerImage('steerfinaltop.png') as string} alt="Final Steering Assembly Top" style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', objectFit: 'cover' }} /></Zoom></div>
                 </div>
             </div >
+        ),
+    },
+
+    {//MAE535 Design of Electromechanical Systems
+        id: '14',
+        title: 'MAE535 Design of Electromechanical Systems',
+        description: 'Course project for MAE535 Design of Electromechanical Systems.',
+        tags: ['Coursework'],
+        imageUrl: getMAE535Image('MAE535Headshot.jpg') as string,
+        slug: 'mae535-design-of-electromechanical-systems',
+        content: (
+            <div>
+                <p style={{ marginBottom: '2rem', fontStyle: 'italic', color: 'var(--stone-400)' }}>
+                    In this graduate class with Dr. Buckner, I learned the fundamentals of EM, Maxwell's equations, electromechanical energy conversion, finite element analysis, and design and control techniques. Two projects were completed: A design study, and a self chosen project. Wonderful class.
+                </p>
+                <div style={{ display: 'flex', gap: '1.5rem', width: '100%', alignItems: 'flex-start' }}>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                        <iframe
+                            src={getMAE535Image('MAE 535 Design Project Report.pdf') as string}
+                            title="MAE 535 Design Project Report"
+                            style={{ width: '100%', height: '75vh', border: '1px solid var(--stone-700)', borderRadius: '8px', backgroundColor: '#ffffff' }}
+                        />
+                    </div>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                        <iframe
+                            src={getMAE535Image('MAE535 Demo Presentation.pdf') as string}
+                            title="MAE535 Demo Presentation"
+                            style={{ width: '100%', height: '75vh', border: '1px solid var(--stone-700)', borderRadius: '8px', backgroundColor: '#ffffff' }}
+                        />
+                    </div>
+                </div>
+            </div>
         ),
     },
 

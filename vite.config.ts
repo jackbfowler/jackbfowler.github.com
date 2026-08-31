@@ -40,5 +40,5 @@ export default defineConfig({
       dynamicRoutes,
     })
   ],
-  assetsInclude: ['**/*.mov'],
+  assetsInclude: ['**/*.mov', '**/*.pdf'],
 })

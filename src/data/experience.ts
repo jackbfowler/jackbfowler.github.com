@@ -5,6 +5,7 @@ import DMGMORI from '../assets/Logos/DMGMORI.png';
 import FORMLABS from '../assets/Logos/FORMLABS.png';
 import NCSSM from '../assets/Logos/NCSSM.png';
 import VALENCE from '../assets/Logos/VALENCE.png';
+import FREEFORM from '../assets/Logos/FREEFORM.png';
 
 export interface Experience {
     id: number;
@@ -42,7 +43,7 @@ export const experienceData: Experience[] = [
         startDate: "2020-08-01",
         endDate: "Present",
         semesterStart: 1,
-        semesterEnd: 8,
+        semesterEnd: 11,
         description: "Pursuing B.S. in Mechanical Engineering. Dean's List.",
         logo: NCSUMAE,
         color: "#BB271A",
@@ -55,7 +56,7 @@ export const experienceData: Experience[] = [
         startDate: "2020-08-01",
         endDate: "Present",
         semesterStart: 1,
-        semesterEnd: 8,
+        semesterEnd: 11,
         description: "Led the design and manufacturing of the suspension system for the 2024 competition vehicle. Managed a team of 5 junior engineers.",
         logo: BAJASAE,
         color: "#BB271A",
@@ -68,7 +69,7 @@ export const experienceData: Experience[] = [
         startDate: "2021-01-01",
         endDate: "Present",
         semesterStart: 2,
-        semesterEnd: 8,
+        semesterEnd: 11,
         description: "Assisted in the development of soft robotics actuators. Published findings in undergraduate research symposium.",
         logo: CAMAL,
         color: "#D2353E",
@@ -99,6 +100,19 @@ export const experienceData: Experience[] = [
         description: "Assisted in the development of soft robotics actuators. Published findings in undergraduate research symposium.",
         logo: FORMLABS,
         color: "#2A60C1",
+        track: 3
+    },
+    {
+        id: 7,
+        company: "Freeform",
+        role: "Summer 2026 Employment",
+        startDate: "2026-05-01",
+        endDate: "2026-08-01",
+        semesterStart: 9,
+        semesterEnd: 10,
+        description: "Summer 2026 employment at Freeform.",
+        logo: FREEFORM,
+        color: "#ffffff",
         track: 3
     },
     {
